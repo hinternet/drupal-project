@@ -1,2 +1,6 @@
 # drupal-develop
-Tools to start development a drupal project
+Tools to start developing drupal projects.
+
+This repository contains a Docker compose file to start with the development of drupal projects.
+
+##Usage
