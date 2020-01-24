@@ -8,6 +8,7 @@ Project scaffold base to start developing Drupal projects, modules and even core
 Before starting the project copy de provided *env* file a *.env* and edit and change to meet your needs. Also if you have cloned this repository **delete** the .git folder on the project root to avoid targeting scaffold repository.
 
 > **IMPORTANT!** MacOS users pay attention to the PHP tag since use a different image than Linux (default).
+
 > **DON'T FORGET** To add the configured project URL in your OS hosts file.
 
 ## Usage
