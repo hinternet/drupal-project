@@ -14,17 +14,14 @@
         }
     ],
     "require": {
-        "composer/installers": "^1.2",
-        "cweagans/composer-patches": "~1.0",
-        "drupal/core-composer-scaffold": "^9.0",
-        "drupal/core-project-message": "^9.0",
-        "drupal/core-recommended": "^9.0"
+        "composer/installers": "^1.9",
+        "drupal/core-composer-scaffold": "^9",
+        "drupal/core-project-message": "^9",
+        "drupal/core-recommended": "^9",
+        "drush/drush": "^10"
     },
     "require-dev": {
-        "drupal/console": "^1",
-        "drupal/core-dev": "^9.0",
-        "drupal/devel": "^2.1",
-        "drush/drush": "^10",
+        "drupal/core-dev": "^9",
         "mglaman/drupal-check": "^1.0",
         "roave/security-advisories": "dev-master"
     },
@@ -80,9 +77,10 @@
         "drupal-core-project-message": {
             "include-keys": ["homepage", "support"],
             "post-create-project-cmd-message": [
-                "<bg=blue;fg=white>                                                          </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase!  </>",
-                "<bg=blue;fg=white>                                                          </>",
+                "<bg=blue;fg=white>                                                         </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  from the hinternet/drupal-project template!          </>",
+                "<bg=blue;fg=white>                                                         </>",
                 "",
                 "<bg=yellow;fg=black>Next steps</>:",
 
