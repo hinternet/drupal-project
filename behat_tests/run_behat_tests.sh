@@ -2,7 +2,12 @@
 
 if [ ! -d /home/wodby ]
 then
-  docker-compose exec php bash behat_tests/run_behat_tests.sh
+  if [[ ${1} == '-v' ]]; then
+    docker-compose exec php bash behat_tests/run_behat_tests.sh -v
+  else
+    docker-compose exec php bash behat_tests/run_behat_tests.sh
+  fi
+
   exit
 fi
 
