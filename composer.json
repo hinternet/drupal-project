@@ -37,7 +37,9 @@
         "drupal/devel": "^4.1",
         "drupal/drupal-extension": "^4.1",
         "drush/drush": "^10.6",
-        "mglaman/drupal-check": "^1.2"
+        "metadrop/grumphp-drupal-check": "^0.3.0 || ^0.2.0",
+        "mglaman/drupal-check": "^1.2",
+        "phpmd/phpmd": "^2.10"
     },
     "conflict": {
         "drupal/drupal": "*"
