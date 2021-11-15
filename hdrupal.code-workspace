@@ -37,6 +37,7 @@
     "emmet.includeLanguages": {
       "twig": "html"
     },
+    /* Commit helper */
     "commit-message-editor.tokens": [
       {
         "label": "Tipo",
@@ -95,11 +96,12 @@
         "description": "Tipo de cambios"
       },
       {
-        "label": "IDTAREA",
+        "label": "SCOPE",
         "name": "scope",
         "type": "text",
-        "description": "introduce el id de tarea (sin #)",
-        "prefix": "#"
+        "description": "introduce el scope (Suele ser el idtarea con #)",
+        "prefix": "(",
+        "suffix": ")"
       },
       {
         "label": "Descripción",
@@ -135,18 +137,12 @@
       "Message footer"
     ],
     "commit-message-editor.dynamicTemplate": [
-      "{type} {scope}: {description}",
+      "{type}{scope}: {description}",
       "",
       "{body}",
       "",
       "{footer}"
     ],
-    "git.autofetch": "all",
-    "git.followTagsWhenSync": true,
-    "git.pruneOnFetch": true,
-    "git.showPushSuccessNotification": true,
-    "files.autoSave": "onFocusChange",
-    "editor.formatOnSaveMode": "modifications",
     "saveAndRun": {
       "commands": [
         {
@@ -155,7 +151,13 @@
           "useShortcut": false
         }
       ]
-    }
+    },
+    "git.autofetch": "all",
+    "editor.formatOnSaveMode": "modifications",
+    "git.followTagsWhenSync": true,
+    "git.pruneOnFetch": true,
+    "git.showPushSuccessNotification": true,
+    "files.autoSave": "onFocusChange"
   },
   "extensions": {
     "recommendations": [
@@ -169,7 +171,6 @@
       "dmitrydorofeev.empty-indent",
       "shyykoserhiy.git-autoconfig",
       "michelemelluso.gitignore",
-      "eamodio.gitlens",
       "dssiqueira.drupal-8-snippets",
       "tsega.drupal-8-twig-snippets",
       "tsega.drupal-8-javascript-snippets",
