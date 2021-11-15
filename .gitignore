@@ -49,3 +49,9 @@ phpunit.xml
 ignore_*
 drupaldocker/
 behat_tests/existing_options_*
+scripts/backup.sh
+scripts/copy-content-config-entity-to-module.sh
+scripts/frontend-build.sh
+scripts/reload-local.sh
+scripts/setup-traefik-port.sh
+scripts/update-helper.sh

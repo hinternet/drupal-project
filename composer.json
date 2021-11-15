@@ -27,6 +27,7 @@
         "drupal/pathauto": "^1.8",
         "drupal/redirect": "^1.6",
         "drupal/token": "^1.9",
+        "metadrop/drupal-dev": "^0.1.8",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^4.2"
     },
