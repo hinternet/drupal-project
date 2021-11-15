@@ -31,9 +31,6 @@ grumphp:
           - revert
           - style
           - test
-        scopes: ~
-        subject_pattern: >-
-            ([a-zA-Zа-яА-Я0-9-_ #@'\/\"]+)
     phpstan:
       configuration: grumphp/phpstan.neon
       force_patterns: []

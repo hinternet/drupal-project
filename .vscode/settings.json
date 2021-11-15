@@ -89,11 +89,12 @@
       "description": "Tipo de cambios"
     },
     {
-      "label": "IDTAREA",
+      "label": "SCOPE",
       "name": "scope",
       "type": "text",
-      "description": "introduce el id de tarea (sin #)",
-      "prefix": "#"
+      "description": "introduce el scope (Suele ser el idtarea con #)",
+      "prefix": "(",
+      "suffix": ")"
     },
     {
       "label": "Descripción",
