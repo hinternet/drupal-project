@@ -57,7 +57,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "bash ./scripts/hiberus.sh"
+            "bash ./scripts/hiberus-post-install.sh"
         ]
     },
     "extra": {
