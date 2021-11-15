@@ -1,0 +1,6 @@
+ARG PHP_TAG
+FROM wodby/drupal-php:$PHP_TAG
+
+# run installs
+COPY environments/local/Dockerfile.hiberus.sh /tmp/copiar/
+RUN bash /tmp/copiar/Dockerfile.hiberus.sh

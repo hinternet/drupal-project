@@ -1,0 +1,17 @@
+uuid: dddcad4c-6776-43fe-b87b-26ca5a746c17
+langcode: en
+status: true
+dependencies: {  }
+id: stage
+label: stage
+description: ''
+folder: ../config/stage
+module: {  }
+theme: {  }
+blacklist:
+  - environment_indicator.indicator
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+graylist_remove_uuid: false
+weight: 0

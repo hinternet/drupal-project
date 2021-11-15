@@ -1,0 +1,20 @@
+site_name: Documentación Cedex
+dev_addr: "0.0.0.0:8080"
+nav:
+  - Inicio: index.md
+  - Local: local.md
+  - Git: Git.md
+  - VSCode: vscode.md
+  - Tests: tests.md
+  - Cedex:
+      - Roles y permisos: cedex/roles-y-permisos.md
+      - Tipos de contenidos: cedex/tipos-de-contenido.md
+  - Otros:
+      - MkDocs: otros/mkdocs.md
+      - Composer Drupal project: otros/composer-drupal-project.md
+markdown_extensions:
+  - admonition
+theme:
+  name: material
+  language: es
+  logo: ./assets/favicon.ico

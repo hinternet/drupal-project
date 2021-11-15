@@ -29,9 +29,6 @@ docker-compose.override.yml
 rector.yml
 phpunit.xml
 
-# Ignored files from scaffolding. Comment this line under project VCS.
-composer.lock
-.editorconfig
 
 # Ignore backups or artifacts
 **/*.sql
@@ -46,3 +43,8 @@ composer.lock
 
 # Do not ignore keeped directories
 !**/.gitkeep
+
+# Ignore pattern
+*_ignore
+ignore_*
+drupaldocker/

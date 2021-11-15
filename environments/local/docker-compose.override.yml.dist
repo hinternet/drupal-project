@@ -1,0 +1,99 @@
+version: "3.7"
+
+services:
+  # mariadb override
+  mariadb:
+    environment:
+      MYSQL_CHARACTER_SET_SERVER: $MYSQL_CHARACTER_SET_SERVER
+      MYSQL_COLLATION_SERVER: $MYSQL_COLLATION_SERVER
+    # # This is the fix
+    # networks:
+    #   - network
+
+  # php override
+  php:
+    build:
+      context: .
+      dockerfile: environments/${PROJECT_STAGE}/Dockerfile.hiberus
+      args:
+        PHP_TAG: $PHP_TAG
+    env_file: # Se incluyen las variables de entorno configuradas
+      - ./.env
+    environment:
+      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S opensmtpd:25
+      DB_HOST: $DB_HOST
+      DB_PORT: $DB_PORT
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_DRIVER: $DB_DRIVER
+      # PHP_FPM_USER: wodby
+      # PHP_FPM_GROUP: wodby
+      COLUMNS: 80 # Set 80 columns for docker exec -it.
+      # Read instructions at https://wodby.com/docs/stacks/php/local/#xdebug
+      # PHP_XDEBUG: 1
+      # PHP_XDEBUG_MODE: debug
+      # PHP_IDE_CONFIG: serverName=editor-xdebug
+      # PHP_XDEBUG_IDEKEY: "editor-xdebug"
+      # PHP_XDEBUG_CLIENT_HOST: 172.17.0.1 # Linux
+      # PHP_XDEBUG_CLIENT_HOST: host.docker.internal # Docker 18.03+ Mac/Win
+      # PHP_XDEBUG_CLIENT_HOST: 10.0.75.1 # Windows, Docker < 18.03
+      # PHP_XDEBUG_LOG: /tmp/php-xdebug.log
+      # PHP_XDEBUG_REMOTE_AUTOSTART: 1
+      # PHP_XDEBUG_DEFAULT_ENABLE: 1
+      # PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+      # PHPUnit Drupal testing configurations
+      # SIMPLETEST_BASE_URL: "http://nginx"
+      # SIMPLETEST_DB: "${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}#tests_"
+      # MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless"]}}, "http://chrome:9515"]'
+      # Drupal settings
+      DRUSH_OPTIONS_URI: $DRUSH_OPTIONS_URI
+      CONFIG_SYNC_DIRECTORY: $CONFIG_SYNC_DIRECTORY
+      HASH_SALT_FILE: $HASH_SALT_FILE
+    volumes:
+    - ./:/var/www/html
+    # # This is the fix
+    # networks:
+    #   - network
+
+  # mkdocs
+  mkdocs:
+    container_name: "${PROJECT_NAME}_mkdocs"
+    image: metadrop/docker-mkdocs
+    volumes:
+      - ./docs:/docs
+    working_dir: /docs
+    labels:
+      - "traefik.http.services.${PROJECT_NAME}_mkdocs.loadbalancer.server.port=8080"
+      - "traefik.http.routers.${PROJECT_NAME}_mkdocs.rule=Host(`docs.${PROJECT_BASE_URL}`)"
+    # # This is the fix
+    # networks:
+    #   - network
+
+
+  # traefik
+  traefik:
+    ports:
+      - "${WEB_PORT}:80"
+      - "${WEB_SSL_PORT}:443"
+      - '8080:8080' # Dashboard
+    # # This is the fix
+    # networks:
+    #   - network
+
+
+## descomenta las siguientes líneas para hacer persistente la base de datos
+## aunque borres los contenedores
+#   mysql:
+#     volumes:
+#       - ./sql/db_data.sql:/var/lib/mysql
+#     user: "1000:1000"
+# volumes:
+#     db_data.sql:
+#         external: false
+
+
+# # This is the fix
+# networks:
+#   network:
+#     driver: bridge

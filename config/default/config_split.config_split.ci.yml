@@ -1,0 +1,16 @@
+uuid: 22e608cc-5fa8-4748-aea2-fadb26edd16a
+langcode: en
+status: true
+dependencies: {  }
+id: ci
+label: ci
+description: ''
+folder: ../config/ci
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+graylist_remove_uuid: false
+weight: 0
