@@ -130,7 +130,7 @@
     "Message footer"
   ],
   "commit-message-editor.dynamicTemplate": [
-    "{type} {scope}: {description}",
+    "{type}{scope}: {description}",
     "",
     "{body}",
     "",
