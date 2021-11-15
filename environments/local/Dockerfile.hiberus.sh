@@ -4,9 +4,9 @@ echo "=======> SUDO APK UPDATE"
 sudo apk update &>/dev/null
 
 echo "=======> ACTUALIZAMOS E INSTALAMOS DEPENDENCIAS"
-sudo apk add unzip
+sudo apk add unzip zip
 
-echo "=======> zsh for freaks"
+echo "=======> ZSH FOR FREAKS"
 curl -s https://gitlab.com/-/snippets/2185597/raw/main/install-zsh-alpine.sh | bash &>/dev/null
 
 

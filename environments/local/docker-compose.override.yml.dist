@@ -6,9 +6,6 @@ services:
     environment:
       MYSQL_CHARACTER_SET_SERVER: $MYSQL_CHARACTER_SET_SERVER
       MYSQL_COLLATION_SERVER: $MYSQL_COLLATION_SERVER
-    # # This is the fix
-    # networks:
-    #   - network
 
   # php override
   php:
@@ -52,9 +49,6 @@ services:
       HASH_SALT_FILE: $HASH_SALT_FILE
     volumes:
     - ./:/var/www/html
-    # # This is the fix
-    # networks:
-    #   - network
 
   # mkdocs
   mkdocs:
@@ -66,9 +60,6 @@ services:
     labels:
       - "traefik.http.services.${PROJECT_NAME}_mkdocs.loadbalancer.server.port=8080"
       - "traefik.http.routers.${PROJECT_NAME}_mkdocs.rule=Host(`docs.${PROJECT_BASE_URL}`)"
-    # # This is the fix
-    # networks:
-    #   - network
 
 
   # traefik
@@ -77,23 +68,9 @@ services:
       - "${WEB_PORT}:80"
       - "${WEB_SSL_PORT}:443"
       - '8080:8080' # Dashboard
-    # # This is the fix
-    # networks:
-    #   - network
 
 
-## descomenta las siguientes líneas para hacer persistente la base de datos
-## aunque borres los contenedores
-#   mysql:
-#     volumes:
-#       - ./sql/db_data.sql:/var/lib/mysql
-#     user: "1000:1000"
-# volumes:
-#     db_data.sql:
-#         external: false
-
-
-# # This is the fix
-# networks:
-#   network:
-#     driver: bridge
+  # crond
+  crond:
+    environment:
+      CRONTAB: "* * * * * drush -r /var/www/html/web cron -vvv"
