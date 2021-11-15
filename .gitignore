@@ -48,3 +48,4 @@ phpunit.xml
 *_ignore
 ignore_*
 drupaldocker/
+behat_tests/existing_options_*

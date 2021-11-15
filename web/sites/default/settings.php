@@ -767,6 +767,7 @@ if (strpos($trusted_hosts, ',') !== FALSE) {
     $settings['trusted_host_patterns'][] = sprintf('^%s$', str_replace('.', '\.', $host));
   }
 }
+$settings['trusted_host_patterns'][] =    '^nginx$';
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.
