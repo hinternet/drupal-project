@@ -1,0 +1,13 @@
+{
+  "ci": {
+    "collect": {
+      "url": "http://${WEB_SERVER}",
+      "settings": {
+        "chromeFlags": "--no-sandbox"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

@@ -1,3 +1,28 @@
+### SCAFFOLD BLOCK ####
+# These lines will be commented out after scaffold is done
+/.env*
+/.eslint*
+.salt
+/.version
+/.ssl
+/composer*
+/config
+/docs
+/docker-compose*
+/files-private
+/grumphp.yml
+/load.environment.php
+/lighthouserc*
+/package*
+/phpstan.neon*
+/phpunit.xml*
+/rector.yml*
+/scripts
+/traefik.toml
+/web
+/yarn.lock
+### END OF SCAFFOLD BLOCK ####
+
 # OS X
 .DS_Store
 .AppleDouble
@@ -40,6 +65,7 @@ pids
 *.pid
 *.seed
 *.pid.lock
+.npm-cache
 
 # Ignore dependencies
 drush/contrib/
@@ -59,6 +85,7 @@ web/libraries/
 # Ignore Drupal's file directory
 web/sites/*/files/
 files-private/*
+tmp
 
 # Drush 9 Checksums
 drush/sites/.checksums
@@ -80,6 +107,9 @@ docker-compose.override.yml
 !web/core/**/*.local.*
 
 # Ignore backups or build artifacts
+/mariadb-init
+/postgres-init
+**/*.orig
 **/*.sql
 **/*.gz
 **/*.zip

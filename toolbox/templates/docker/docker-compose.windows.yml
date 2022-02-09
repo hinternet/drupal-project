@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  php:
+    environment:
+## Read instructions at https://wodby.com/stacks/drupal/docs/local/xdebug/
+#      PHP_XDEBUG: 1
+      PHP_XDEBUG_MODE: debug
+      PHP_IDE_CONFIG: $PHP_IDE_CONFIG
+      PHP_XDEBUG_IDEKEY: $PHP_XDEBUG_IDEKEY
+      PHP_XDEBUG_CLIENT_HOST: host.docker.internal
+      PHP_XDEBUG_LOG: /tmp/php-xdebug.log
+#      # PHPUnit Drupal testing configurations
+#      SIMPLETEST_BASE_URL: "http://${WEB_SERVER}"
+#      SIMPLETEST_DB: "${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}#tests_"
+#      MINK_DRIVER_ARGS_WEBDRIVER: '["chrome", {"browserName":"chrome","goog:chromeOptions":{"args":["--disable-gpu","--headless"]}}, "http://chrome:9515"]'
+    volumes:
+    - drupal:/var/www/html:cached
+
+  crond:
+    volumes:
+    - drupal:/var/www/html:cached
+
+#  nginx:
+#    volumes:
+#    - drupal:/var/www/html:cached
+
+#  apache:
+#    volumes:
+#    - drupal:/var/www/html:cached
+
+#  node:
+#    volumes:
+#    - drupal:/var/www/html:cached
+
+volumes:
+  drupal:
+    driver_opts:
+      type: none
+      device: "${PWD}"
+      o: bind
