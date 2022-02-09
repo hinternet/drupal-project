@@ -62,12 +62,3 @@ if [ "$PROJECT_OS" = "macos" ]; then
 	sed -i '' '94,94 s/^/#/' ./.env
 	sed -i '' '100,100 s/^#//' ./.env
 fi
-
-### Check for git repository
-echo "Intializing git repository"
-GIT_REPOSITORY="./.git"
-if [ -d "$GIT_REPOSITORY" ]; then
-  echo "There's a git repository already, skipped. If is the scaffold project repository, please deleted it and re-run the setup."
-else
-  git init;
-fi

@@ -1,24 +1,8 @@
-ifneq ($(OS),Windows_NT)
-	CURRENT_OS := $(shell uname)
-else
-	CURRENT_OS := $(OS)
-endif
-
 ## setup	:	Initial project setup
 .PHONY: setup
 setup: ./toolbox/templates/.env.dist ./toolbox/scripts/setup.sh ./toolbox/scripts/reqs.sh
 	@./toolbox/scripts/reqs.sh
 	@./toolbox/scripts/setup.sh
-
-## install	:	Installs Drupal using the pre-packed configuration
-install: ./config ./composer.json ./.env
-	@$(MAKE) up
-ifeq ($(CURRENT_OS),Darwin)
-	@$(MAKE) mutagen
-endif
-	@$(MAKE) composer "install --no-interaction"
-	@$(MAKE) composer "run-script install-drupal --no-interaction"
-	@$(MAKE) drush "si --existing-config -y"
 
 ## clean	:	Delete project setup files
 .PHONY: clean
@@ -58,8 +42,20 @@ _clean:
 	@echo "********************************"
 
 ## done	:	Set the scaffold as done, preventing furhter modifications
-done: ./toolbox/make/setup.mk
+done: ./toolbox/scripts/done.sh
+	@./toolbox/scripts/done.sh
+
+_done:
+	@echo "Intializing git repository"
+ifneq ($(wildcard .git),)
+	@echo "There's a git repository already, backed up as .git.orig. If is the scaffold project repository, please deleted it."
+	@mv .git .git.orig
+else
+  @git init;
+endif
+	@echo "Comment scaffold ignored files"
 	@sed -i '' '3,23 s/^/#/' ./.gitignore
+	@echo "Disabling setup routines"
 	@mv ./toolbox/make/setup.mk ./toolbox/make/setup.mk.orig
 
 _docker:
