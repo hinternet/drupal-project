@@ -50,13 +50,14 @@ _done:
 ifneq ($(wildcard .git),)
 	@echo "There's a git repository already, backed up as .git.orig. If is the scaffold project repository, please deleted it."
 	@mv .git .git.orig
-else
-  @git init;
 endif
+	@git init;
 	@echo "Comment scaffold ignored files"
 	@sed -i '' '3,23 s/^/#/' ./.gitignore
 	@echo "Disabling setup routines"
 	@mv ./toolbox/make/setup.mk ./toolbox/make/setup.mk.orig
+	@git add .
+	@git commit -m "Initial commit"
 
 _docker:
 	@echo "Copying Docker files"
