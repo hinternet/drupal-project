@@ -14,9 +14,10 @@
         }
     ],
     "require": {
+        "php": ">=7.4",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.7",
-        "drupal/admin_toolbar": "^3.0",
+        "drupal/admin_toolbar": "^3.1",
         "drupal/coffee": "^1.2",
         "drupal/config_split": "^1.7",
         "drupal/core-composer-scaffold": "^9.3",
@@ -24,11 +25,13 @@
         "drupal/ctools": "^3.7",
         "drupal/environment_indicator": "^4.0",
         "drupal/module_filter": "^3.2",
-        "drupal/pathauto": "^1.8",
-        "drupal/redirect": "^1.6",
-        "drupal/token": "^1.9",
+        "drupal/pathauto": "^1.9",
+        "drupal/redirect": "^1.7",
+        "drupal/token": "^1.10",
+        "drush/drush": "^10.6",
         "oomphinc/composer-installers-extender": "^2.0",
-        "vlucas/phpdotenv": "^4.2"
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2"
     },
     "require-dev": {
         "behat/behat": "^3.10",
@@ -36,26 +39,43 @@
         "drupal/core-dev": "^9.3",
         "drupal/devel": "^4.1",
         "drupal/drupal-extension": "^4.1",
-        "drush/drush": "^10.6",
-        "metadrop/drupal-dev": "^0.1.8",
+        "metadrop/drupal-dev": "^0.1",
         "metadrop/grumphp-drupal-check": "^0.3.0 || ^0.2.0",
-        "mglaman/drupal-check": "^1.2",
-        "phpmd/phpmd": "^2.10"
+        "phpmd/phpmd": "^2.11"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "config": {
-        "sort-packages": true
+     "config": {
+        "discard-changes": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true
+        }
     },
     "autoload": {
-        "files": [
-            "load.environment.php"
-        ]
+        "classmap": [
+            "toolbox/templates/drupal/scripts/composer/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
     },
     "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
         "install-drupal": [
             "./toolbox/scripts/generate-salt.sh",
             "./toolbox/scripts/enforce-permissions.sh"

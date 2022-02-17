@@ -82,6 +82,7 @@ _setup_drupal:
 	cp ./toolbox/templates/drupal/settings.php ./web/sites/default/;
 	cp ./toolbox/templates/drupal/settings.local.php ./web/sites/default/;
 	cp -r ./toolbox/templates/drupal/config ./
+	cp -r ./toolbox/templates/drupal/drush ./
 
 _setup_tests: _setup_phpunit _setup_lighthouse _setup_qa
 
