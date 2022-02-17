@@ -81,7 +81,7 @@ _setup_drupal:
 	mkdir -p web/sites/default/files;
 	mkdir -p files-private;
 	cp ./toolbox/templates/drupal/settings.php ./web/sites/default/;
-	cp ./toolbox/templates/drupal/settings.local.php ./web/sites/default/;
+	cp ./toolbox/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php;
 	cp -r ./toolbox/templates/drupal/config ./
 	cp -r ./toolbox/templates/drupal/drush ./
 
