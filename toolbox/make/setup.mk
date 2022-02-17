@@ -79,6 +79,7 @@ _setup_drupal:
 	cp ./toolbox/templates/drupal/composer.json ./;
 	cp ./toolbox/templates/drupal/load.environment.php ./;
 	mkdir -p web/sites/default/files;
+	mkdir -p files-private;
 	cp ./toolbox/templates/drupal/settings.php ./web/sites/default/;
 	cp ./toolbox/templates/drupal/settings.local.php ./web/sites/default/;
 	cp -r ./toolbox/templates/drupal/config ./
