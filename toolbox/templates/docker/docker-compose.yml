@@ -54,6 +54,8 @@ services:
 #      NGINX_DRUPAL_FILE_PROXY_URL: $NGINX_DRUPAL_FILE_PROXY_URL
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_nginx.rule=Host(`${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_nginx.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_nginx.tls"
 
   mailhog:
     image: mailhog/mailhog
@@ -61,6 +63,8 @@ services:
     labels:
     - "traefik.http.services.${PROJECT_NAME}_mailhog.loadbalancer.server.port=8025"
     - "traefik.http.routers.${PROJECT_NAME}_mailhog.rule=Host(`mailhog.${PROJECT_BASE_URL}`)"
+    - "traefik.http.routers.${PROJECT_NAME}_mailhog.entrypoints=websecure"
+    - "traefik.http.routers.${PROJECT_NAME}_mailhog.tls"
 
 #  postgres:
 #    image: wodby/postgres:$POSTGRES_TAG
@@ -87,6 +91,8 @@ services:
 #      APACHE_DOCUMENT_ROOT: $APACHE_DOCUMENT_ROOT
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_apache.rule=Host(`${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_apache.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_apache.tls"
 
 #  varnish:
 #    image: wodby/varnish:$VARNISH_TAG
@@ -102,6 +108,8 @@ services:
 #    labels:
 #    - "traefik.http.services.${PROJECT_NAME}_varnish.loadbalancer.server.port=6081"
 #    - "traefik.http.routers.${PROJECT_NAME}_varnish.rule=Host(`varnish.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_varnish.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_varnish.tls"
 
 #  redis:
 #    container_name: "${PROJECT_NAME}_redis"
@@ -117,6 +125,8 @@ services:
 #      ADMINER_DEFAULT_DB_NAME: $DB_NAME
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_adminer.rule=Host(`adminer.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_adminer.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_adminer.tls"
 
 #  pma:
 #    image: phpmyadmin/phpmyadmin
@@ -128,6 +138,8 @@ services:
 #      UPLOAD_LIMIT: 1G
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_pma.rule=Host(`pma.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_pma.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_pma.tls"
 
 #  solr:
 #    image: wodby/solr:$SOLR_TAG
@@ -138,12 +150,16 @@ services:
 #    labels:
 #    - "traefik.http.services.${PROJECT_NAME}_solr.loadbalancer.server.port=8983"
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_solr.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_solr.tls"
 
 #  drupal-node:
 #    image: wodby/drupal-node:$DRUPAL_NODE_TAG
 #    container_name: "${PROJECT_NAME}_drupal_nodejs"
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_drupal_node.rule=Host(`drupal_node.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_drupal_node.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_drupal_node.tls"
 #    environment:
 #      NODE_SERVICE_KEY: node-service-key
 
@@ -173,6 +189,8 @@ services:
 #    labels:
 #    - "traefik.http.services.${PROJECT_NAME}_node.loadbalancer.server.port=3000"
 #    - "traefik.http.routers.${PROJECT_NAME}_node.rule=Host(`node.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_node.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_node.tls"
 #    expose:
 #    - "3000"
 #    command: sh -c 'yarn install && yarn run start'
@@ -195,6 +213,8 @@ services:
 #    labels:
 #    - "traefik.http.services.${PROJECT_NAME}_kibana.loadbalancer.server.port=5601"
 #    - "traefik.http.routers.${PROJECT_NAME}_kibana.rule=Host(`kibana.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_kibana.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_kibana.tls"
 
 #  opensmtpd:
 #    container_name: "${PROJECT_NAME}_opensmtpd"

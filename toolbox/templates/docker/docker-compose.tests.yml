@@ -29,6 +29,8 @@ services:
 #      WEBGRIND_PROFILER_DIR: /mnt/files/xdebug
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_webgrind.rule=Host(`webgrind.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_webgrind.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_webgrind.tls"
 #    volumes:
 #    - files:/mnt/files
 
@@ -40,6 +42,8 @@ services:
 #    - files:/mnt/files
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_xhprof.rule=Host(`xhprof.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_xhprof.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_xhprof.tls"
 
   chrome:
     image: selenium/standalone-chrome:$SELENIUM_CHROME_TAG
