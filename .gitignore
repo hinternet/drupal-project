@@ -9,6 +9,7 @@
 /config
 /docs
 /docker-compose*
+/drush
 /files-private
 /grumphp.yml
 /load.environment.php

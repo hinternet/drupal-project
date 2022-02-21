@@ -53,7 +53,7 @@ ifneq ($(wildcard .git),)
 endif
 	@git init;
 	@echo "Comment scaffold ignored files"
-	@sed -i '' '3,23 s/^/#/' ./.gitignore
+	@sed -i '' '3,24 s/^/#/' ./.gitignore
 	@echo "Disabling setup routines"
 	@mv ./toolbox/make/setup.mk ./toolbox/make/setup.mk.orig
 	@git add .
