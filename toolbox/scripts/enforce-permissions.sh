@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 PHP_FPM_USER="${PHP_FPM_USER:-wodby}"
 PHP_FPM_GROUP="${PHP_FPM_GROUP:-wodby}"
