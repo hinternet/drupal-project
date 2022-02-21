@@ -101,7 +101,8 @@
             },
             "file-mapping": {
                 "[web-root]/.htaccess": false,
-                "[web-root]/robots.txt": false
+                "[web-root]/robots.txt": false,
+                "[project-root]/.editorconfig": false
             }
         },
         "installer-types": [
