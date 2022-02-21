@@ -3,8 +3,8 @@
 /**
  * Disable assets preprocessing
  */
-$config['system.performance']['css']['preprocess'] = getenv('CSS_PREPROCESS');
-$config['system.performance']['js']['preprocess'] = getenv('JS_PREPROCESS');
+$config['system.performance']['css']['preprocess'] = FALSE;
+$config['system.performance']['js']['preprocess'] = FALSE;
 
 /**
  * Override the default filed prefix "field_"
