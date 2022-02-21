@@ -3,16 +3,23 @@
     "description": "Project template for Drupal projects with a relocated document root",
     "type": "project",
     "license": "GPL-2.0-or-later",
-    "repositories": [
-        {
+    "repositories": {
+        "drupal": {
             "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "url": "https://packages.drupal.org/8",
+            "only": [
+                "drupal/*"
+            ]
         },
-        {
+        "assets": {
             "type": "composer",
-            "url": "https://asset-packagist.org"
-        }
-    ],
+            "url": "https://asset-packagist.org",
+            "only": [
+                "npm-asset/*",
+                "bower-asset/*"
+            ]
+        },
+    },
     "require": {
         "php": ">=7.4",
         "composer/installers": "^1.9",
