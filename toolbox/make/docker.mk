@@ -5,12 +5,22 @@ default: up
 COMPOSER_ROOT ?= /var/www/html
 DRUPAL_ROOT ?= /var/www/html/web
 
+ifneq ($(OS),Windows_NT)
+	CURRENT_OS := $(shell uname)
+else
+	CURRENT_OS := $(OS)
+endif
+
 ## up	:	Start up containers.
 .PHONY: up
 up:
 	@echo "Starting up containers for $(PROJECT_NAME)..."
 	docker-compose pull
+ifeq ($(CURRENT_OS),Darwin)
+	mutagen-compose up -d --remove-orphans
+else
 	docker-compose up -d --remove-orphans
+endif
 
 .PHONY: mutagen
 mutagen:
@@ -24,13 +34,21 @@ down: stop
 .PHONY: start
 start:
 	@echo "Starting containers for $(PROJECT_NAME) from where you left off..."
+ifeq ($(CURRENT_OS),Darwin)
+	@mutagen-compose start
+else
 	@docker-compose start
+endif
 
 ## stop	:	Stop containers.
 .PHONY: stop
 stop:
 	@echo "Stopping containers for $(PROJECT_NAME)..."
+ifeq ($(CURRENT_OS),Darwin)
+	@mutagen-compose stop
+else
 	@docker-compose stop
+endif
 
 ## prune	:	Remove containers and their volumes.
 ##		You can optionally pass an argument with the service name to prune single container
@@ -39,7 +57,11 @@ stop:
 .PHONY: prune
 prune:
 	@echo "Removing containers for $(PROJECT_NAME)..."
+ifeq ($(CURRENT_OS),Darwin)
+	@mutagen-compose down -v $(filter-out $@,$(MAKECMDGOALS))
+else
 	@docker-compose down -v $(filter-out $@,$(MAKECMDGOALS))
+endif
 
 ## ps	:	List running containers.
 .PHONY: ps
