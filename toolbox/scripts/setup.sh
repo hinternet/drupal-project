@@ -59,6 +59,6 @@ make -f "./toolbox/make/setup.mk" _setup_tests;
 
 ### Set proper PHP image for macOS users
 if [ "$PROJECT_OS" = "macos" ]; then
-	sed -i '' '94,94 s/^/#/' ./.env
-	sed -i '' '100,100 s/^#//' ./.env
+	sed -i '' '93,93 s/^/#/' ./.env
+	sed -i '' '99,99 s/^#//' ./.env
 fi
