@@ -1,6 +1,6 @@
 ## setup	:	Initial project setup
 .PHONY: setup
-setup: ./toolbox/templates/.env.dist ./toolbox/scripts/setup.sh ./toolbox/scripts/reqs.sh
+setup: ./toolbox/templates/docker/.env.dist ./toolbox/scripts/setup.sh ./toolbox/scripts/reqs.sh
 	@./toolbox/scripts/reqs.sh
 	@./toolbox/scripts/setup.sh
 
