@@ -13,6 +13,23 @@ PROJECT_BASE_URL=${PROJECT_BASE_URL:-localhost} ;
 export PROJECT_BASE_URL;
 make -f "./toolbox/make/setup.mk" _docker;
 
+### Select database server
+while true; do
+    printf "Choose your database server ([mariadb] or postgres): "
+    read -r;
+    DB_SERVER=${REPLY:-mariadb}
+    case $DB_SERVER in
+        mariadb|postgres* ) export DB_SERVER; break;;
+        * ) echo "Invalid answer, try again.";;
+    esac
+done
+
+if [ "$DB_SERVER" = "mariadb" ]; then
+	sed -i '' '4,17 s/^#//' ./docker-compose.yml
+else
+	sed -i '' '69,80 s/^#//' ./docker-compose.yml
+fi
+
 ### Select webserver
 while true; do
     printf "Choose your web server ([nginx] or apache): "

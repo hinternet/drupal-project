@@ -1,20 +1,20 @@
 version: "3.7"
 
 services:
-  mariadb:
-    image: wodby/mariadb:$MARIADB_TAG
-    container_name: "${PROJECT_NAME}_mariadb"
-    stop_grace_period: 30s
-    environment:
-      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
-      MYSQL_DATABASE: $DB_NAME
-      MYSQL_USER: $DB_USER
-      MYSQL_PASSWORD: $DB_PASSWORD
-      MYSQL_CHARACTER_SET_SERVER: $MYSQL_CHARACTER_SET_SERVER
-      MYSQL_COLLATION_SERVER: $MYSQL_COLLATION_SERVER
-    volumes:
-#      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
-      - database:/var/lib/mysql
+#  mariadb:
+#    image: wodby/mariadb:$MARIADB_TAG
+#    container_name: "${PROJECT_NAME}_mariadb"
+#    stop_grace_period: 30s
+#    environment:
+#      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+#      MYSQL_DATABASE: $DB_NAME
+#      MYSQL_USER: $DB_USER
+#      MYSQL_PASSWORD: $DB_PASSWORD
+#      MYSQL_CHARACTER_SET_SERVER: $MYSQL_CHARACTER_SET_SERVER
+#      MYSQL_COLLATION_SERVER: $MYSQL_COLLATION_SERVER
+#    volumes:
+##      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+#      - database:/var/lib/mysql
 
   php:
     image: wodby/drupal-php:$PHP_TAG
