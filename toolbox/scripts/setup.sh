@@ -73,6 +73,6 @@ cp ./.env.dist ./.env;
 
 ### Set proper PHP image for macOS users
 if [ "$PROJECT_OS" = "macos" ]; then
-	sed -i '' '97,97 s/^/#/' ./.env
-	sed -i '' '103,103 s/^#//' ./.env
+	sed -i '' '98,98 s/^/#/' ./.env
+	sed -i '' '104,104 s/^#//' ./.env
 fi
