@@ -11,6 +11,7 @@ printf "Enter the project hostname [localhost]: ";
 read -r PROJECT_BASE_URL;
 PROJECT_BASE_URL=${PROJECT_BASE_URL:-localhost} ;
 export PROJECT_BASE_URL;
+make -f "./toolbox/make/setup.mk" _docker;
 
 ### Select webserver
 while true; do

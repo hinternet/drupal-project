@@ -64,13 +64,13 @@ _docker:
 	cp ./toolbox/templates/docker/traefik.toml ./traefik.toml
 	cp -r ./toolbox/templates/docker/.ssl ./
 
-_linux: _docker
+_linux:
 	cp ./toolbox/templates/docker/docker-compose.linux.yml ./docker-compose.override.yml
 
-_windows: _docker
+_windows:
 	cp ./toolbox/templates/docker/docker-compose.windows.yml ./docker-compose.override.yml
 
-_macos: _docker
+_macos:
 	cp ./toolbox/templates/docker/docker-compose.macos.yml ./docker-compose.override.yml
 
 _setup_drupal:
