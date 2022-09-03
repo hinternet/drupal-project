@@ -29,6 +29,17 @@ else
 	sed -i '' '82,95 s/^#//' ./docker-compose.yml
 fi
 
+### Enable ngrok proxy
+while true; do
+    printf "Do you wish to enable ngrok proxy? "
+    read -r yn
+    case $yn in
+        [Yy]* ) sed -i '' '231,251 s/^#//' ./docker-compose.yml; break;;
+        [Nn]* ) echo 'ngrok proxy not enabled'; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
 ### Setup Drupal settings
 make -f "./toolbox/make/setup.mk" _setup_drupal;
 

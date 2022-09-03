@@ -57,6 +57,7 @@ The Drupal stack consist of the following containers:
 | Traefik         | latest             | [_/traefik]                        | ✓             | ✓                  |
 | Lighthouse      | latest             | [pixboost/lighthouse-ci-cli]       |               | ✓ (tests-only)     |
 | Cypress         | latest             | [cypress/included]                 |               | ✓ (tests-only)     |
+| Ngrok           | latest             | [wernight/ngrok]                   |               |                    |
 
 Supported Drupal versions: 9
 

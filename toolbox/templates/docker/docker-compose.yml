@@ -228,6 +228,28 @@ mailhog:
 #    container_name: "${PROJECT_NAME}_opensmtpd"
 #    image: wodby/opensmtpd:$OPENSMTPD_TAG
 
+#  ngrok:
+#    image: wernight/ngrok:$NGROK_TAG
+#    container_name: "${PROJECT_NAME}_ngrok"
+#    environment:
+#      NGROK_AUTH: $NGROK_AUTH
+#      NGROK_USERNAME: $NGROK_USERNAME
+#      NGROK_PASSWORD: $NGROK_PASSWORD
+#      NGROK_PROTOCOL: $NGROK_PROTOCOL
+#      NGROK_PORT: $NGROK_PORT
+#      NGROK_REGION: $NGROK_REGION
+#      NGROK_LOOK_DOMAIN: $NGROK_LOOK_DOMAIN
+#      NGROK_BINDTLS: $NGROK_BINDTLS
+#      NGROK_HEADER: $NGROK_HEADER
+#      NGROK_DEBUG: $NGROK_DEBUG
+#      NGROK_SUBDOMAIN: $NGROK_SUBDOMAIN
+#      NGROK_HOSTNAME: $NGROK_HOSTNAME
+#      NGROK_REMOTE_ADDR: $NGROK_REMOTE_ADDR
+#    labels:
+#      - "traefik.http.routers.${PROJECT_NAME}_ngrok.rule=Host(`ngrok.${PROJECT_BASE_URL}`)"
+#      - "traefik.http.routers.${PROJECT_NAME}_ngrok.entrypoints=websecure"
+#      - "traefik.http.routers.${PROJECT_NAME}_ngrok.tls"
+
   traefik:
     image: traefik:latest
     container_name: "${PROJECT_NAME}_traefik"
