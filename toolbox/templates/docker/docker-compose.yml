@@ -20,15 +20,15 @@ services:
     image: wodby/drupal-php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
     environment:
-      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
-#      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S opensmtpd:25
+      SSMTP_MAILHUB: $SSMTP_MAILHUB
+      PHP_SENDMAIL_PATH: $PHP_SENDMAIL_PATH
       DB_HOST: $DB_HOST
       DB_PORT: $DB_PORT
       DB_USER: $DB_USER
       DB_PASSWORD: $DB_PASSWORD
       DB_NAME: $DB_NAME
       DB_DRIVER: $DB_DRIVER
-      DRUSH_OPTIONS_URI: $DRUSH_OPTIONS_URI
+      DRUSH_OPTIONS_URI: "https://${PROJECT_BASE_URL}:${WEB_SSL_PORT}"
       PHP_FPM_USER: wodby
       PHP_FPM_GROUP: wodby
 #      COLUMNS: 80 # Set 80 columns for docker exec -it.
@@ -57,10 +57,10 @@ services:
 #    - "traefik.http.routers.${PROJECT_NAME}_nginx.entrypoints=websecure"
 #    - "traefik.http.routers.${PROJECT_NAME}_nginx.tls"
 
-  mailhog:
-    image: mailhog/mailhog
-    container_name: "${PROJECT_NAME}_mailhog"
-    labels:
+mailhog:
+  image: mailhog/mailhog
+  container_name: "${PROJECT_NAME}_mailhog"
+  labels:
     - "traefik.http.services.${PROJECT_NAME}_mailhog.loadbalancer.server.port=8025"
     - "traefik.http.routers.${PROJECT_NAME}_mailhog.rule=Host(`mailhog.${PROJECT_BASE_URL}`)"
     - "traefik.http.routers.${PROJECT_NAME}_mailhog.entrypoints=websecure"
@@ -76,7 +76,7 @@ services:
 #      POSTGRES_USER: $DB_USER
 #      POSTGRES_DB_EXTENSIONS: pg_trgm
 #    volumes:
-#    - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
+##    - ./postgres-init:/docker-entrypoint-initdb.d # Place init file(s) here.
 #    - database:/var/lib/postgresql/data
 
 #  apache:
@@ -152,6 +152,14 @@ services:
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.rule=Host(`solr.${PROJECT_BASE_URL}`)"
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.entrypoints=websecure"
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.tls"
+
+#  zookeeper:
+#    image: zookeeper:$ZOOKEEPER_TAG
+#    container_name: "${PROJECT_NAME}_zookeeper"
+#    environment:
+#      ZOO_MY_ID: 1
+#      ZOO_SERVERS: server.1=zookeeper:2888:3888;2181
+#      ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
 
 #  drupal-node:
 #    image: wodby/drupal-node:$DRUPAL_NODE_TAG
@@ -238,5 +246,5 @@ services:
       - ./traefik.toml:/etc/traefik/traefik.toml
 
 volumes:
-## For database
+  ## For database
   database:

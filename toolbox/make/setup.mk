@@ -17,7 +17,6 @@ _clean:
 	rm -f ./lighthouserc* 2>&1
 	rm -f ./composer* 2>&1
 	rm -f ./docker-compose* 2>&1
-	rm -f ./docker-compose* 2>&1
 	rm -f ./grumphp.yml 2>&1
 	rm -f ./load.environment.php 2>&1
 	rm -f ./package* 2>&1
@@ -86,6 +85,7 @@ _setup_drupal:
 	cp -r ./toolbox/templates/drupal/drush ./
 
 _setup_tests: _setup_phpunit _setup_lighthouse _setup_qa
+	cp ./toolbox/templates/docker/docker-compose.tests.yml ./
 
 _setup_phpunit:
 	cp ./phpunit.xml.dist ./phpunit.xml
