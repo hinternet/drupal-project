@@ -15,6 +15,7 @@ help:
 
 ## install	:	Installs Drupal using the pre-packed configuration
 install: ./config ./composer.json ./.env
+	@echo "Executing Drupal installation"
 	@$(MAKE) up
 ifeq ($(CURRENT_OS),Darwin)
 	@$(MAKE) mutagen
@@ -22,6 +23,9 @@ endif
 	@$(MAKE) composer "install --no-interaction"
 	@$(MAKE) composer "run-script install-drupal --no-interaction"
 	@$(MAKE) drush "si --existing-config -y"
+	@echo "Installation finished!"
+	@echo "You can log-in by clicking the link below"
+	@$(MAKE) drush "user:login"
 
 ## test	:	Run scaffolding tests
 .PHONY: test
