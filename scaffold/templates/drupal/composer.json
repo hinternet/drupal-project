@@ -109,7 +109,7 @@
     },
     "autoload": {
         "classmap": [
-            "toolbox/templates/drupal/scripts/composer/ScriptHandler.php"
+            "./scaffold/templates/drupal/scripts/composer/ScriptHandler.php"
         ],
         "files": ["load.environment.php"]
     },
@@ -127,8 +127,8 @@
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ],
         "install-drupal": [
-            "./toolbox/scripts/generate-salt.sh",
-            "./toolbox/scripts/enforce-permissions.sh"
+            "./scaffold/scripts/generate-salt.sh",
+            "./scaffold/scripts/enforce-permissions.sh"
         ]
     },
     "extra": {

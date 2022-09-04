@@ -12,9 +12,9 @@ while true; do
     read -r;
     PROJECT_OS=${REPLY:-linux}
     case $PROJECT_OS in
-        linux* ) cp ./toolbox/templates/docker/docker-compose.linux.yml ./docker-compose.override.yml; break;;
-        windows* ) cp ./toolbox/templates/docker/docker-compose.windows.yml ./docker-compose.override.yml; break;;
-        macos* ) cp ./toolbox/templates/docker/docker-compose.macos.yml ./docker-compose.override.yml; break;;
+        linux* ) cp ./scaffold/templates/docker/docker-compose.linux.yml ./docker-compose.override.yml; break;;
+        windows* ) cp ./scaffold/templates/docker/docker-compose.windows.yml ./docker-compose.override.yml; break;;
+        macos* ) cp ./scaffold/templates/docker/docker-compose.macos.yml ./docker-compose.override.yml; break;;
         * ) echo "Invalid answer, try again.";;
     esac
 done

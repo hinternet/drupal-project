@@ -14,7 +14,7 @@ read -r PROJECT_BASE_URL;
 PROJECT_BASE_URL=${PROJECT_BASE_URL:-localhost} ;
 export PROJECT_BASE_URL;
 echo "---------------------------------------";
-make -f "./toolbox/make/setup.mk" _docker;
+make -f "./scaffold/make/setup.mk" _docker;
 echo "---------------------------------------";
 
 ### Select database server
@@ -64,14 +64,14 @@ done
 
 ### Setup Drupal settings
 echo "---------------------------------------";
-make -f "./toolbox/make/setup.mk" _setup_drupal;
+make -f "./scaffold/make/setup.mk" _setup_drupal;
 
 ### Replace vars with provided settings
-envsubst <"./toolbox/templates/docker/.env.dist" >"./.env.dist";
-envsubst <"./toolbox/templates/testing/lighthouserc.json" >"./lighthouserc.json";
-envsubst <"./toolbox/templates/testing/phpunit.xml.dist" >"./phpunit.xml.dist";
+envsubst <"./scaffold/templates/docker/.env.dist" >"./.env.dist";
+envsubst <"./scaffold/templates/testing/lighthouserc.json" >"./lighthouserc.json";
+envsubst <"./scaffold/templates/testing/phpunit.xml.dist" >"./phpunit.xml.dist";
 
-make -f "./toolbox/make/setup.mk" _setup_tests;
+make -f "./scaffold/make/setup.mk" _setup_tests;
 
 echo "=======================================";
 echo "Project scaffold completed!";

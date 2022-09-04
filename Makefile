@@ -1,7 +1,7 @@
 .SHELLFLAGS = -e
 .DEFAULT_GOAL := help
 
-include ./toolbox/make/*.mk
+include ./scaffold/make/*.mk
 
 ifneq ($(OS),Windows_NT)
 	CURRENT_OS := $(shell uname)

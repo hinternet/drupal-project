@@ -1,13 +1,13 @@
 ## setup	:	Initial project setup
 .PHONY: setup
-setup: ./toolbox/templates/docker/.env.dist ./toolbox/scripts/setup.sh ./toolbox/scripts/reqs.sh
-	@./toolbox/scripts/reqs.sh
-	@./toolbox/scripts/setup.sh
+setup: ./scaffold/templates/docker/.env.dist ./scaffold/scripts/setup.sh ./scaffold/scripts/reqs.sh
+	@./scaffold/scripts/reqs.sh
+	@./scaffold/scripts/setup.sh
 
 ## clean	:	Delete project setup files
 .PHONY: clean
-clean: ./toolbox/scripts/clean.sh
-	@./toolbox/scripts/clean.sh
+clean: ./scaffold/scripts/clean.sh
+	@./scaffold/scripts/clean.sh
 
 .PHONY: _clean
 _clean:
@@ -41,8 +41,8 @@ _clean:
 	@echo "********************************"
 
 ## done	:	Set the scaffold as done, preventing furhter modifications
-done: ./toolbox/scripts/done.sh
-	@./toolbox/scripts/done.sh
+done: ./scaffold/scripts/done.sh
+	@./scaffold/scripts/done.sh
 
 _done:
 	@echo "Intializing git repository"
@@ -54,29 +54,29 @@ endif
 	@echo "Comment scaffold ignored files"
 	@sed -i '' '3,24 s/^/#/' ./.gitignore
 	@echo "Disabling setup routines"
-	@mv ./toolbox/make/setup.mk ./toolbox/make/setup.mk.orig
+	@mv ./scaffold/make/setup.mk ./scaffold/make/setup.mk.orig
 	@git add .
 	@git commit -m "Initial commit"
 
 _docker:
 	@echo "Copying Docker files"
-	cp ./toolbox/templates/docker/docker-compose.yml ./docker-compose.yml
-	cp ./toolbox/templates/docker/traefik.toml ./traefik.toml
-	cp -r ./toolbox/templates/docker/.ssl ./
+	cp ./scaffold/templates/docker/docker-compose.yml ./docker-compose.yml
+	cp ./scaffold/templates/docker/traefik.toml ./traefik.toml
+	cp -r ./scaffold/templates/docker/.ssl ./
 
 _setup_drupal:
 	@echo "Setup Drupal files";
-	cp ./toolbox/templates/drupal/composer.json ./;
-	cp ./toolbox/templates/drupal/load.environment.php ./;
+	cp ./scaffold/templates/drupal/composer.json ./;
+	cp ./scaffold/templates/drupal/load.environment.php ./;
 	mkdir -p web/sites/default/files;
 	mkdir -p files-private;
-	cp ./toolbox/templates/drupal/settings.php ./web/sites/default/;
-	cp ./toolbox/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php;
-	cp -r ./toolbox/templates/drupal/config ./
-	cp -r ./toolbox/templates/drupal/drush ./
+	cp ./scaffold/templates/drupal/settings.php ./web/sites/default/;
+	cp ./scaffold/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php;
+	cp -r ./scaffold/templates/drupal/config ./
+	cp -r ./scaffold/templates/drupal/drush ./
 
 _setup_tests: _setup_phpunit _setup_lighthouse _setup_qa
-	cp ./toolbox/templates/docker/docker-compose.tests.yml ./
+	cp ./scaffold/templates/docker/docker-compose.tests.yml ./
 
 _setup_phpunit:
 	cp ./phpunit.xml.dist ./phpunit.xml
@@ -86,8 +86,8 @@ _setup_lighthouse:
 	mkdir -p ./.lighthouseci
 
 _setup_qa:
-	cp ./toolbox/templates/testing/grumphp.yml ./
-	cp ./toolbox/templates/testing/phpstan.neon ./
-	cp ./toolbox/templates/testing/rector.yml ./
-	cp ./toolbox/templates/testing/.eslintignore ./
-	cp ./toolbox/templates/testing/.eslintrc.json ./
+	cp ./scaffold/templates/testing/grumphp.yml ./
+	cp ./scaffold/templates/testing/phpstan.neon ./
+	cp ./scaffold/templates/testing/rector.yml ./
+	cp ./scaffold/templates/testing/.eslintignore ./
+	cp ./scaffold/templates/testing/.eslintrc.json ./
