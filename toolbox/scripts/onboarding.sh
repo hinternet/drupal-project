@@ -21,6 +21,12 @@ done
 
 cp -f ./.env.dist ./.env;
 
+if [ "$WEB_SERVER" = "nginx" ]; then
+	sed -i '' '24,26 s/^#//' ./docker-compose.override.yml
+else
+	sed -i '' '28,30 s/^#//' ./docker-compose.override.yml
+fi
+
 printf "Enter your IDE [phpstorm]: ";
 read -r;
 IDE=${REPLY:-phpstorm} ;
