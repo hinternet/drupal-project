@@ -19,6 +19,8 @@ Most common tasks are explained below, also for each task a GNU/Make target is p
 
 | Make                             | Docker                                               | Task                         |
 | -------------------------------- | ---------------------------------------------------- | ---------------------------- |
+| make onboard                     | -                                                    | Setup local environment      |
+| make install                     | -                                                    | Install Drupal               |
 | make [up:start]                  | docker-compose pull                                  | Start stack                  |
 |                                  | docker-compose up -d --remove-orphans                |                              |
 | make [down:stop]                 | docker-compose stop                                  | Stop stack                   |
