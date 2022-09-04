@@ -5,6 +5,7 @@ dependencies: {  }
 id: ci
 label: ci
 description: ''
+weight: 0
 folder: ../config/ci
 module: {  }
 theme: {  }
@@ -12,5 +13,3 @@ blacklist: {  }
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
-graylist_remove_uuid: false
-weight: 0

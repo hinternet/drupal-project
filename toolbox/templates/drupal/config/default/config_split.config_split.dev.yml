@@ -5,6 +5,7 @@ dependencies: {  }
 id: dev
 label: dev
 description: ''
+weight: 0
 folder: ../config/dev
 module: {  }
 theme: {  }
@@ -13,5 +14,3 @@ blacklist:
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
-graylist_remove_uuid: false
-weight: 0

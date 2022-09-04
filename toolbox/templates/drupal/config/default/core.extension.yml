@@ -1,25 +1,35 @@
+_core:
+  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
+langcode: es
 module:
+  action: 0
+  actions_permissions: 0
   admin_toolbar: 0
   admin_toolbar_links_access_filter: 0
   admin_toolbar_tools: 0
-  automated_cron: 0
+  base_field_override_ui: 0
   big_pipe: 0
   block: 0
   block_content: 0
+  block_form_alter: 0
   breakpoint: 0
+  checklistapi: 0
   ckeditor: 0
   coffee: 0
   color: 0
+  colorbox: 0
   comment: 0
   config: 0
   config_filter: 0
   config_split: 0
   contact: 0
   contextual: 0
+  ctools: 0
   datetime: 0
   dblog: 0
   devel: 0
   dynamic_page_cache: 0
+  easy_breadcrumb: 0
   editor: 0
   environment_indicator: 0
   environment_indicator_ui: 0
@@ -27,37 +37,72 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  flood_control: 0
+  gin_lb: 0
+  gin_login: 0
+  gin_toolbar: 0
+  health_check: 0
   help: 0
   history: 0
+  honeypot: 0
+  hux: 0
   image: 0
+  imageapi_optimize: 0
   language: 0
+  layout_builder: 0
+  layout_builder_browser: 0
+  layout_builder_lock: 0
+  layout_builder_operation_link: 0
+  layout_builder_restrictions: 0
+  layout_builder_save_and_edit: 0
+  layout_discovery: 0
   link: 0
   locale: 0
+  media: 0
+  media_gallery: 0
+  media_library: 0
+  media_library_edit: 0
+  media_library_theme_reset: 0
   menu_link_content: 0
   menu_ui: 0
   module_filter: 0
+  mysql: 0
   node: 0
   options: 0
   page_cache: 0
   path: 0
   path_alias: 0
+  production_checklist: 0
   quickedit: 0
+  rabbit_hole: 0
   rdf: 0
+  redirect: 0
+  redirect_404: 0
+  responsive_image: 0
+  rh_node: 0
+  rh_taxonomy: 0
+  rh_user: 0
   search: 0
+  seckit: 0
+  settings_tray: 0
+  structure_sync: 0
   system: 0
   taxonomy: 0
   text: 0
+  token: 0
   toolbar: 0
   tour: 0
+  twig_tools: 0
   update: 0
   user: 0
+  views_bulk_operations: 0
   views_ui: 0
+  webp: 0
+  pathauto: 1
   views: 10
   minimal: 1000
 theme:
-  bartik: 0
-  seven: 0
+  claro: 0
+  gin: 0
+  olivero: 0
 profile: minimal
-_core:
-  default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
-langcode: es

@@ -1,4 +1,7 @@
-anonymous: Anonymous
+_core:
+  default_config_hash: w314Zp7B4NbrlV4KeeZLNSmTTpdJiv-KwZO2E1fSSK0
+langcode: es
+anonymous: Anónimo
 verify_mail: true
 notify:
   cancel_confirm: true
@@ -13,6 +16,3 @@ register: visitors_admin_approval
 cancel_method: user_cancel_block
 password_reset_timeout: 86400
 password_strength: true
-langcode: es
-_core:
-  default_config_hash: w314Zp7B4NbrlV4KeeZLNSmTTpdJiv-KwZO2E1fSSK0

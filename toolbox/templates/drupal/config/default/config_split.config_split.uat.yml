@@ -5,6 +5,7 @@ dependencies: {  }
 id: uat
 label: uat
 description: ''
+weight: 0
 folder: ../config/uat
 module: {  }
 theme: {  }
@@ -12,5 +13,3 @@ blacklist: {  }
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
-graylist_remove_uuid: false
-weight: 0
