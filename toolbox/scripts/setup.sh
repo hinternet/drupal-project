@@ -1,6 +1,8 @@
 #!/bin/sh
 
-echo "Executing project scaffold script";
+echo "#######################################";
+echo "#  Executing project scaffold script  #";
+echo "#######################################";
 
 ### Get project settings
 
@@ -11,7 +13,9 @@ printf "Enter the project hostname [localhost]: ";
 read -r PROJECT_BASE_URL;
 PROJECT_BASE_URL=${PROJECT_BASE_URL:-localhost} ;
 export PROJECT_BASE_URL;
+echo "---------------------------------------";
 make -f "./toolbox/make/setup.mk" _docker;
+echo "---------------------------------------";
 
 ### Select database server
 while true; do
@@ -53,12 +57,13 @@ while true; do
     read -r yn
     case $yn in
         [Yy]* ) sed -i '' '231,251 s/^#//' ./docker-compose.yml; break;;
-        [Nn]* ) echo 'ngrok proxy not enabled'; break;;
+        [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 ### Setup Drupal settings
+echo "---------------------------------------";
 make -f "./toolbox/make/setup.mk" _setup_drupal;
 
 ### Replace vars with provided settings
@@ -66,30 +71,17 @@ envsubst <"./toolbox/templates/docker/.env.dist" >"./.env.dist";
 envsubst <"./toolbox/templates/testing/lighthouserc.json" >"./lighthouserc.json";
 envsubst <"./toolbox/templates/testing/phpunit.xml.dist" >"./phpunit.xml.dist";
 
-echo "Setup testing tools"
 make -f "./toolbox/make/setup.mk" _setup_tests;
 
-### Onboarding
-while true; do
-    printf "Choose your host OS ([linux], windows, macos): "
-    read -r;
-    PROJECT_OS=${REPLY:-linux}
-    case $PROJECT_OS in
-        linux|windows|macos* ) make -f "./toolbox/make/setup.mk" "_$PROJECT_OS"; break;;
-        * ) echo "Invalid answer, try again.";;
-    esac
-done
-
-printf "Enter your IDE [phpstorm]: ";
-read -r;
-IDE=${REPLY:-phpstorm} ;
-export IDE;
-
-envsubst <"./toolbox/templates/docker/.env.dist" >"./.env.dist";
-cp ./.env.dist ./.env;
-
-### Set proper PHP image for macOS users
-if [ "$PROJECT_OS" = "macos" ]; then
-	sed -i '' '98,98 s/^/#/' ./.env
-	sed -i '' '104,104 s/^#//' ./.env
-fi
+echo "=======================================";
+echo "Project scaffold completed!";
+echo "=======================================";
+echo "Please, continue by running:";
+echo "  * make onboard # To configure your local env";
+echo "  * make install # To start the application and run Drupal installer";
+echo "  * make done # If everything is ok, finishes the initial setup and executes the first commit";
+echo "---------------------------------------";
+echo "IMPORTANT!":
+echo "In case of errors during setup, onboarding or installation, prior executing done command";
+echo "you can reset the whole process by running: make clean";
+echo "#######################################";

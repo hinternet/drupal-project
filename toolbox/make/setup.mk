@@ -64,15 +64,6 @@ _docker:
 	cp ./toolbox/templates/docker/traefik.toml ./traefik.toml
 	cp -r ./toolbox/templates/docker/.ssl ./
 
-_linux:
-	cp ./toolbox/templates/docker/docker-compose.linux.yml ./docker-compose.override.yml
-
-_windows:
-	cp ./toolbox/templates/docker/docker-compose.windows.yml ./docker-compose.override.yml
-
-_macos:
-	cp ./toolbox/templates/docker/docker-compose.macos.yml ./docker-compose.override.yml
-
 _setup_drupal:
 	@echo "Setup Drupal files";
 	cp ./toolbox/templates/drupal/composer.json ./;

@@ -11,6 +11,11 @@ else
 	CURRENT_OS := $(OS)
 endif
 
+## onboard	:	Executes project onboarding
+.PHONY: onboard
+onboard: .env.dist ./toolbox/scripts/onboarding.sh
+	@./toolbox/scripts/onboarding.sh
+
 ## up	:	Start up containers.
 .PHONY: up
 up:

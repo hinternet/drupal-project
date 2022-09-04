@@ -3,9 +3,15 @@
 Project scaffold base to start developing Drupal projects, modules and even core. The project scaffold sits on top
 [Wodby's Docker4Drupal stack](https://wodby.com/docs/stacks/drupal/local/) and [Drupal Composer project](https://github.com/drupal-composer/drupal-project).
 
-## Starting
+## Scaffolding
 
-@TODO Add setup instructions
+To execute the scaffolding process, from your terminal run the following commands:
+1. `make setup`: collects configurarion and puts everything in place for the project.
+2. `make onboard`: after setup is completed you must run this command to get your local environment ready to start the project.
+3. `make install`: this will run the Drupal installation script, after it you will have fully functional Drupal site.
+4. `make done`: this will terminate the scaffolding process, this command should be run ONLY if everything went well.
+
+In case of errors in any point and you haven't execute the `make done` command, you cand reset the whole process by running `make clean`.
 
 ## Usage
 
