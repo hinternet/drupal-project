@@ -72,9 +72,10 @@
         "dmore/behat-chrome-extension": "^1.3",
         "drupal/core-dev": "^9.4",
         "drupal/drupal-extension": "^4.1",
-        "metadrop/drupal-dev": "^0.1",
-        "metadrop/grumphp-drupal-check": "^0.3.0 || ^0.2.0",
-        "phpmd/phpmd": "^2.11"
+        "phpmd/phpmd": "^2.11",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "mglaman/phpstan-drupal": "^1.0",
+        "phpro/grumphp": "^1.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -121,6 +122,7 @@
             "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
         ],
         "post-install-cmd": [
+            "if [ ! -f ./.git/hooks/pre-commit ]; then vendor/bin/grumphp git:init; else echo \"Grumphp is sniffing your commits\"; fi",
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ],
         "post-update-cmd": [
