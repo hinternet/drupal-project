@@ -29,8 +29,8 @@
         "drupal/block_form_alter": "^2.0",
         "drupal/coffee": "^1.2",
         "drupal/config_split": "^1.7",
-        "drupal/core-composer-scaffold": "^9.4",
-        "drupal/core-recommended": "^9.4",
+        "drupal/core-composer-scaffold": "^9.5",
+        "drupal/core-recommended": "^9.5",
         "drupal/ctools": "^3.7",
         "drupal/devel": "^4.1",
         "drupal/easy_breadcrumb": "^2.0",
@@ -138,11 +138,6 @@
         "enable-patching": true,
         "patchLevel": {
             "drupal/core": "-p2"
-        },
-        "patches": {
-            "drupal/easy_breadcrumb": {
-                "ModuleHandler error after upgrading entity module": "https://www.drupal.org/files/issues/2022-09-02/3307333-2.patch"
-            }
         },
         "drupal-scaffold": {
             "locations": {
