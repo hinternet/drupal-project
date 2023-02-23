@@ -232,7 +232,6 @@ $databases['default']['default'] = [
   'database' => getenv('DB_NAME'),
   'username' => getenv('DB_USER'),
   'password' => getenv('DB_PASSWORD'),
-  'prefix' => getenv('DB_PREFIX'),
   'driver' => getenv('DB_DRIVER'),
   'charset' => getenv('MYSQL_CHARACTER_SET_SERVER'),
   'collation' => getenv('MYSQL_COLLATION_SERVER'),
