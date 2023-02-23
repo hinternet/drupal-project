@@ -1,9 +1,9 @@
 _core:
-  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+  default_config_hash: l58O_yEXSo-SeJi19LXdzTU1tNJG3lmnIhCitRkM1tk
 langcode: es
-uuid: 596a1eb4-a047-4c1b-bf0b-67b02b03ebeb
-name: 'Drush Site-Install'
-mail: admin@example.com
+uuid: 649c65a6-9208-41c3-97c7-31dc98061ae0
+name: Hiberus
+mail: admin@noreply.es
 slogan: ''
 page:
   403: ''
