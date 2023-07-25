@@ -1,0 +1,13 @@
+#
+# A Drush configuration file
+#
+# Docs at https://github.com/drush-ops/drush/blob/master/examples/example.drush.yml
+#
+# Edit or remove this file as needed.
+drush:
+  paths:
+    cache-directory: /tmp/.drush
+
+# This section is for setting global options.
+options:
+  uri: '${env.DRUSH_OPTIONS_URI}'

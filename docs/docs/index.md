@@ -1,3 +1,0 @@
-# CEDEX
-
-Documentación para Cedex

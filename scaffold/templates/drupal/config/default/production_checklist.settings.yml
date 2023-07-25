@@ -1,0 +1,24 @@
+_core:
+  default_config_hash: DeUmF_fjPAMA9JujzFaWemjjZ-z06kNsmAolagxriTM
+sections:
+  drupal_system: drupal_system
+  drupal_codebase: drupal_codebase
+  other_codebase: other_codebase
+  spam_prevention: spam_prevention
+  security_access: security_access
+  content: content
+  frontend: frontend
+  database: database
+  performance: performance
+  test: test
+  analytics: analytics
+  sysadmin: sysadmin
+  seo: seo
+  legal: legal
+  documentation: documentation
+notification_enable: 1
+notification_user: 1
+notification_preferences:
+  - on_site
+  - email
+langcode: es

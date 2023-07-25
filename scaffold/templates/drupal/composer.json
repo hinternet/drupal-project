@@ -1,0 +1,184 @@
+{
+    "name": "hinternet/drupal-project",
+    "description": "Project template for Drupal projects with a relocated document root",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8",
+            "only": [
+                "drupal/*"
+            ]
+        },
+        "assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org",
+            "only": [
+                "npm-asset/*",
+                "bower-asset/*"
+            ]
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/admin_toolbar": "^3.1",
+        "drupal/base_field_override_ui": "^1.0",
+        "drupal/block_form_alter": "^2.0",
+        "drupal/coffee": "^1.2",
+        "drupal/config_split": "^1.7",
+        "drupal/core-composer-scaffold": "^9.5",
+        "drupal/core-recommended": "^9.5",
+        "drupal/ctools": "^3.7",
+        "drupal/devel": "^4.1",
+        "drupal/easy_breadcrumb": "^2.0",
+        "drupal/environment_indicator": "^4.0",
+        "drupal/flood_control": "^2.2",
+        "drupal/gin": "^3.0@beta",
+        "drupal/gin_lb": "^1.0@beta",
+        "drupal/gin_login": "^1.3",
+        "drupal/health_check": "^2.0",
+        "drupal/honeypot": "^2.1",
+        "drupal/hux": "^1.0",
+        "drupal/imageapi_optimize": "^4.0",
+        "drupal/layout_builder_browser": "^1.4",
+        "drupal/layout_builder_lock": "^1.1",
+        "drupal/layout_builder_operation_link": "^2.0",
+        "drupal/layout_builder_restrictions": "^2.15",
+        "drupal/layout_builder_save_and_edit": "^1.0",
+        "drupal/media_gallery": "^2.0",
+        "drupal/media_library_edit": "^2.3",
+        "drupal/media_library_theme_reset": "^1.3",
+        "drupal/module_filter": "^3.2",
+        "drupal/pathauto": "^1.9",
+        "drupal/production_checklist": "^1.0@alpha",
+        "drupal/rabbit_hole": "^1.0@beta",
+        "drupal/redirect": "^1.7",
+        "drupal/seckit": "^2.0",
+        "drupal/structure_sync": "^2.0",
+        "drupal/token": "^1.10",
+        "drupal/twig_tools": "^1.4",
+        "drupal/views_bulk_operations": "^4.1",
+        "drupal/webp": "^1.0@beta",
+        "drush/drush": "^10.6",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2"
+    },
+    "require-dev": {
+        "behat/behat": "^3.10",
+        "dmore/behat-chrome-extension": "^1.3",
+        "drupal/core-dev": "^9.4",
+        "drupal/drupal-extension": "^4.1",
+        "phpmd/phpmd": "^2.11",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "mglaman/phpstan-drupal": "^1.0",
+        "phpro/grumphp": "^1.0"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "suggest": {
+        "drupal/block_list_override": "Remove unnecessary blocks from the block list for better UX and system performance.",
+        "drupal/eca": "ECA is a powerful, versatile, and user-friendly rules engine for Drupal 9+.",
+        "drupal/file_browser": "An alternative to Media when you actually need to handle your files.",
+        "drupal/inline_block_title_automatic": "Allows to control the user-facing title for inline blocks.",
+        "drupal/layoutcomponent": "Layout components provides a series of components available to be used out of the box.",
+        "drupal/layout_builder_component_attributes": "Allows editors to add HTML attributes to Layout Builder blocks.",
+        "drupal/metatags": "Allows you to automatically provide structured metadata, aka 'meta tags', about a website",
+        "drupal/robotstxt": "Generates the robots.txt file dynamically and gives you the chance to edit it from the web UI.",
+        "drupal/simple_sitemap": "Every webpage needs an automatic XML sitemap generator for SEO reasons.",
+        "drupal/toolbar_menu_clean": "It helps you create role-based menu, and don't mess with the default Drupal Administration menu.",
+        "drupal/tvp": "Allows to translate views page aliases, useful on multilingual sites."
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+     "config": {
+        "discard-changes": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpro/grumphp": true,
+            "metadrop/scripthor": true,
+            "oomphinc/composer-installers-extender": true
+        }
+    },
+    "autoload": {
+        "classmap": [
+            "./scaffold/templates/drupal/scripts/composer/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "if [ ! -f ./.git/hooks/pre-commit ]; then vendor/bin/grumphp git:init; else echo \"Grumphp is sniffing your commits\"; fi",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "install-drupal": [
+            "./scaffold/scripts/generate-salt.sh",
+            "./scaffold/scripts/enforce-permissions.sh"
+        ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            },
+            "file-mapping": {
+                "[project-root]/.editorconfig": false
+            }
+        },
+        "installer-types": [
+            "npm-asset",
+            "bower-asset"
+        ],
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:npm-asset",
+                "type:bower-asset",
+                "vendor:ckeditor-plugin"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        }
+    }
+}

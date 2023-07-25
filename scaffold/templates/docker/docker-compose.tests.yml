@@ -1,0 +1,73 @@
+version: "3"
+
+services:
+  lighthouse:
+    image: pixboost/lighthouse-ci-cli:$LIGHTHOUSE_CI_TAG
+    container_name: "${PROJECT_NAME}_lighthouse"
+    command: sh -c "npm install && npm install --save-dev install-chrome-dependencies && npm install -g @lhci/cli@0.7.x"
+    depends_on:
+      - $WEBSERVER_SERVICE
+    volumes:
+      - ./.lighthouserc.json:/home/lhci/lighthouserc.json
+      - ./.git:/home/lhci/.git
+      - ./.lighthouseci:/home/lhci/.lighthouseci
+    entrypoint:
+      - lhci
+      - "autorun"
+
+#  blackfire:
+#    image: blackfire/blackfire
+#    container_name: "${PROJECT_NAME}_blackfire"
+#    environment:
+#      BLACKFIRE_SERVER_ID: $BLACKFIRE_SERVER_ID
+#      BLACKFIRE_SERVER_TOKEN: $BLACKFIRE_SERVER_TOKEN
+
+#  webgrind:
+#    image: wodby/webgrind:$WEBGRIND_TAG
+#    container_name: "${PROJECT_NAME}_webgrind"
+#    environment:
+#      WEBGRIND_PROFILER_DIR: /mnt/files/xdebug
+#    labels:
+#    - "traefik.http.routers.${PROJECT_NAME}_webgrind.rule=Host(`webgrind.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_webgrind.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_webgrind.tls"
+#    volumes:
+#    - files:/mnt/files
+
+#  xhprof:
+#    image: wodby/xhprof:$XHPROF_TAG
+#    container_name: "${PROJECT_NAME}_xhprof"
+#    restart: always
+#    volumes:
+#    - files:/mnt/files
+#    labels:
+#    - "traefik.http.routers.${PROJECT_NAME}_xhprof.rule=Host(`xhprof.${PROJECT_BASE_URL}`)"
+#    - "traefik.http.routers.${PROJECT_NAME}_xhprof.entrypoints=websecure"
+#    - "traefik.http.routers.${PROJECT_NAME}_xhprof.tls"
+
+  chrome:
+    image: selenium/standalone-chrome:$SELENIUM_CHROME_TAG
+    container_name: "${PROJECT_NAME}_chrome"
+    volumes:
+    - /dev/shm:/dev/shm
+    entrypoint:
+    - chromedriver
+    - "--no-sandbox"
+    - "--disable-dev-shm-usage"
+    - "--log-path=/tmp/chromedriver.log"
+    - "--verbose"
+    - "--whitelisted-ips="
+
+  cypress:
+    image: cypress/included:$CYPRESS_TAG
+    container_name: "${PROJECT_NAME}_cypress"
+    depends_on:
+      - $WEBSERVER_SERVICE
+    environment:
+      CYPRESS_baseUrl: $SIMPLETEST_BASE_URL
+    working_dir: /e2e
+    volumes:
+      - ./tests/cypress/:/e2e
+
+volumes:
+  files:

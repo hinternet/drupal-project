@@ -1,0 +1,74 @@
+grumphp:
+  hooks_dir: ~
+  tasks:
+    git_commit_message:
+      allow_empty_message: false
+      enforce_capitalized_subject: false
+      enforce_no_subject_punctuations: false
+      enforce_no_subject_trailing_period: true
+      enforce_single_lined_subject: true
+      max_subject_width: 60
+      max_body_width: 72
+      # matchers:
+      #     No cumple el formato requerido: /(fix|feat|docs|build|chore|ci|perf|refactor|revert|style|test)+([ ]+\#[0-9]*:[ ])+(.*)|(Merge branch)+(.*)/
+      case_insensitive: true
+      multiline: true
+      additional_modifiers: ''
+      type_scope_conventions:
+        types:
+          - build
+          - ci
+          - chore
+          - docs
+          - feat
+          - fix
+          - perf
+          - refactor
+          - revert
+          - style
+          - test
+    phpstan:
+      configuration: phpstan.neon
+      force_patterns: []
+      ignore_patterns: []
+      triggered_by: ["php"]
+      memory_limit: "-1"
+      use_grumphp_paths: true
+    phpmd:
+      whitelist_patterns: []
+      exclude: []
+      report_format: text
+      # ruleset: ['cleancode', 'codesize', 'design', 'naming', 'unusedcode', 'controversial']
+      ruleset: ['cleancode', 'codesize', 'design', 'naming', 'unusedcode']
+      triggered_by: ['php']
+    phpcs:
+      encoding: utf-8
+      triggered_by:
+        - php
+        - inc
+        - module
+        - install
+        - profile
+        - theme
+        - feature
+        - info
+        - txt
+        - md
+        - js
+        - test
+      standard: Drupal,DrupalPractice
+    # jsonlint: ~
+    # composer: ~
+    # phplint: ~
+    # yamllint: ~
+    # drupalcheck: ~
+    # phpcpd:
+    #   directory:
+    #     - ./web/**/custom
+    #   triggered_by:
+    #     - php
+    #     - inc
+    #     - module
+    #     - install
+    #     - profile
+    #     - theme

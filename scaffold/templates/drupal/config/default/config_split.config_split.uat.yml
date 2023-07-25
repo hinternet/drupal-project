@@ -1,0 +1,15 @@
+uuid: b4794e86-6d77-4300-ac9f-2da3d0a12187
+langcode: en
+status: true
+dependencies: {  }
+id: uat
+label: uat
+description: ''
+weight: 0
+folder: ../config/uat
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
