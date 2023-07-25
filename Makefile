@@ -1,4 +1,4 @@
-.SHELLFLAGS = -e
+.SHELLFLAGS = -ec
 .DEFAULT_GOAL := help
 
 include ./scaffold/make/*.mk

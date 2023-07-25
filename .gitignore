@@ -22,6 +22,7 @@
 /traefik.toml
 /web
 /yarn.lock
+patches.lock.json
 ### END OF SCAFFOLD BLOCK ####
 
 # OS X

@@ -1,0 +1,10 @@
+uuid: 940803a7-8fed-4797-bdeb-ebdce038a3c9
+langcode: es
+status: true
+dependencies:
+  module:
+    - media_gallery
+id: media_gallery.token
+label: Token
+targetEntityType: media_gallery
+cache: true

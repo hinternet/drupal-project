@@ -1,0 +1,14 @@
+uuid: 032bd287-7283-4238-9ff8-3f78d19fdc99
+langcode: es
+status: true
+dependencies:
+  config:
+    - user.role.administator
+  module:
+    - user
+id: user_add_role_action.administator
+label: 'Añade el rol Administador al(los) usuario(s) seleccionado(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: administator

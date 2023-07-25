@@ -20,7 +20,7 @@ echo "---------------------------------------";
 ### Select database server
 while true; do
     printf "Choose your database server ([mariadb] or postgres): "
-    read -r;
+    read -r REPLY;
     DB_SERVER=${REPLY:-mariadb}
     case $DB_SERVER in
         mariadb|postgres* ) export DB_SERVER; break;;
@@ -29,15 +29,15 @@ while true; do
 done
 
 if [ "$DB_SERVER" = "mariadb" ]; then
-	sed -i '' '4,17 s/^#//' ./docker-compose.yml
+	sed -i  '4,17 s/^#//' ./docker-compose.yml
 else
-	sed -i '' '69,80 s/^#//' ./docker-compose.yml
+	sed -i  '69,80 s/^#//' ./docker-compose.yml
 fi
 
 ### Select webserver
 while true; do
     printf "Choose your web server ([nginx] or apache): "
-    read -r;
+    read -r REPLY;
     WEB_SERVER=${REPLY:-nginx}
     case $WEB_SERVER in
         nginx|apache* ) export WEB_SERVER; break;;
@@ -46,9 +46,9 @@ while true; do
 done
 
 if [ "$WEB_SERVER" = "nginx" ]; then
-	sed -i '' '43,58 s/^#//' ./docker-compose.yml
+	sed -i  '43,58 s/^#//' ./docker-compose.yml
 else
-	sed -i '' '82,95 s/^#//' ./docker-compose.yml
+	sed -i  '82,95 s/^#//' ./docker-compose.yml
 fi
 
 ### Enable ngrok proxy
@@ -56,7 +56,7 @@ while true; do
     printf "Do you wish to enable ngrok proxy? "
     read -r yn
     case $yn in
-        [Yy]* ) sed -i '' '231,251 s/^#//' ./docker-compose.yml; break;;
+        [Yy]* ) sed -i  '231,251 s/^#//' ./docker-compose.yml; break;;
         [Nn]* ) break;;
         * ) echo "Please answer yes or no.";;
     esac
