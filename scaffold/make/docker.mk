@@ -13,7 +13,7 @@ endif
 
 ## onboard	:	Executes project onboarding
 .PHONY: onboard
-onboard: .env.dist ./scaffold/scripts/onboarding.sh
+onboard: .env.dist ./scaffold/scripts/onboarding.sh setenv
 	@./scaffold/scripts/onboarding.sh
 
 ## up	:	Start up containers.

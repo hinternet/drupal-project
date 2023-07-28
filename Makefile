@@ -9,6 +9,20 @@ else
 	CURRENT_OS := $(OS)
 endif
 
+ifeq ($(CURRENT_OS),Darwin)
+	SED_INLINE := -i ''
+else
+	SED_INLINE := -i
+endif
+
+sed-test:
+	@sed $(SED_INLINE) 's/zas/tras/g' test.txt
+
+.PHONY: setenv
+setenv:
+	@export CURRENT_OS=$(CURRENT_OS)
+	@export SED_INLINE=$(SED_INLINE)
+
 .PHONY: help
 help:
 	@sed -n 's/^##//p' $(filter-out .env, $(MAKEFILE_LIST))
