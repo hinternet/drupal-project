@@ -1,0 +1,13 @@
+uuid: 7d56b786-36f1-4d21-9da8-213fcec1e0fb
+langcode: es
+status: true
+dependencies:
+  enforced:
+    module:
+      - forum
+_core:
+  default_config_hash: ESGfHGDVWjnc2BiSFq58LOhBU6-f_2AGcwGjbqegYfo
+name: Foros
+vid: forums
+description: 'Vocabulario de navegación de foro'
+weight: -10

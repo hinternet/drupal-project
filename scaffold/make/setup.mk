@@ -6,7 +6,7 @@ setup: ./scaffold/templates/docker/.env.dist ./scaffold/scripts/setup.sh ./scaff
 
 ## clean	:	Delete project setup files
 .PHONY: clean
-clean: ./scaffold/scripts/clean.sh
+clean: ./scaffold/scripts/clean.sh _setenv
 	@./scaffold/scripts/clean.sh
 
 .PHONY: _clean
@@ -41,7 +41,7 @@ _clean:
 	@echo "********************************"
 
 ## done	:	Set the scaffold as done, preventing furhter modifications
-done: ./scaffold/scripts/done.sh
+done: ./scaffold/scripts/done.sh _setenv
 	@./scaffold/scripts/done.sh
 
 _done:
@@ -52,7 +52,7 @@ ifneq ($(wildcard .git),)
 endif
 	@git init;
 	@echo "Comment scaffold ignored files"
-	@sed -i '' '3,24 s/^/#/' ./.gitignore
+	@sed $(SED_INLINE) '3,24 s/^/#/' ./.gitignore
 	@echo "Disabling setup routines"
 	@mv ./scaffold/make/setup.mk ./scaffold/make/setup.mk.orig
 	@git add .
