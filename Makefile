@@ -15,9 +15,6 @@ else
 	SED_INLINE := -i
 endif
 
-sed-test:
-	@sed $(SED_INLINE) 's/zas/tras/g' test.txt
-
 .PHONY: setenv
 setenv:
 	@export CURRENT_OS=$(CURRENT_OS)
