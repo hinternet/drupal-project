@@ -1,12 +1,12 @@
 ## setup	:	Initial project setup
 .PHONY: setup
-setup: ./scaffold/templates/docker/.env.dist ./scaffold/scripts/setup.sh ./scaffold/scripts/reqs.sh setenv
+setup: ./scaffold/templates/docker/.env.dist ./scaffold/scripts/setup.sh ./scaffold/scripts/reqs.sh
 	@./scaffold/scripts/reqs.sh
 	@./scaffold/scripts/setup.sh
 
 ## clean	:	Delete project setup files
 .PHONY: clean
-clean: ./scaffold/scripts/clean.sh setenv
+clean: ./scaffold/scripts/clean.sh _setenv
 	@./scaffold/scripts/clean.sh
 
 .PHONY: _clean
@@ -41,7 +41,7 @@ _clean:
 	@echo "********************************"
 
 ## done	:	Set the scaffold as done, preventing furhter modifications
-done: ./scaffold/scripts/done.sh setenv
+done: ./scaffold/scripts/done.sh _setenv
 	@./scaffold/scripts/done.sh
 
 _done:

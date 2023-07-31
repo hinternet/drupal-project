@@ -1,8 +1,6 @@
 .SHELLFLAGS = -ec
 .DEFAULT_GOAL := help
 
-include ./scaffold/make/*.mk
-
 ifneq ($(OS),Windows_NT)
 	CURRENT_OS := $(shell uname)
 else
@@ -15,10 +13,10 @@ else
 	SED_INLINE := -i
 endif
 
-.PHONY: setenv
-setenv:
-	@export CURRENT_OS=$(CURRENT_OS)
-	@export SED_INLINE=$(SED_INLINE)
+export CURRENT_OS
+export SED_INLINE
+
+include ./scaffold/make/*.mk
 
 .PHONY: help
 help:
