@@ -45,7 +45,6 @@ _clean:
 ## done	:	Set the scaffold as done, preventing furhter modifications
 done: ./scaffold/scripts/done.sh
 	@./scaffold/scripts/done.sh
-	@rm -rf ./scaffold
 
 _done:
 	@echo "Intializing git repository"
@@ -57,7 +56,8 @@ endif
 	@echo "Comment scaffold ignored files"
 	@$(call replace_inline,'3,25 s/^/#/',./.gitignore)
 	@echo "Disabling setup routines"
-	@mv ./scaffold/make/setup.mk ./scaffold/make/setup.mk.orig
+	@mv ./scaffold ./scaffold.orig
+	@mv ./tests/scaffold ./tests/scaffold.orig
 	@git add .
 	@git commit -m "Initial commit"
 
@@ -68,6 +68,7 @@ _docker:
 	cp -r ./scaffold/templates/docker/.ssl ./
 	mkdir -p ./config/docker
 	cp ./scaffold/templates/docker/docker-compose.*.yml ./config/docker/
+	cp ./scaffold/templates/make/docker.mk ./config/docker/
 
 _setup_drupal:
 	@echo "Setup Drupal files";
