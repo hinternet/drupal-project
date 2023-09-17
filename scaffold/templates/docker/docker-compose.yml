@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
 #  mariadb:
-#    image: wodby/mariadb:$MARIADB_TAG
+#    image: "wodby/mariadb:${MARIADB_TAG}"
 #    container_name: "${PROJECT_NAME}_mariadb"
 #    stop_grace_period: 30s
 #    environment:
@@ -17,7 +17,7 @@ services:
 #      - database:/var/lib/mysql
 
   php:
-    image: wodby/drupal-php:$PHP_TAG
+    image: "wodby/drupal-php:${PHP_TAG}"
     container_name: "${PROJECT_NAME}_php"
     environment:
       PHP_SENDMAIL_PATH: $PHP_SENDMAIL_PATH
@@ -33,14 +33,14 @@ services:
 #      COLUMNS: 80 # Set 80 columns for docker exec -it.
 
   crond:
-    image: wodby/drupal-php:$PHP_TAG
+    image: "wodby/drupal-php:${PHP_TAG}"
     container_name: "${PROJECT_NAME}_crond"
     environment:
       CRONTAB: $CRONTAB
     command: sudo -E LD_PRELOAD=/usr/lib/preloadable_libiconv.so crond -f -d 0
 
 #  nginx:
-#    image: wodby/nginx:$NGINX_TAG
+#    image: "wodby/nginx:${NGINX_TAG}"
 #    container_name: "${PROJECT_NAME}_nginx"
 #    depends_on:
 #    - php
@@ -68,7 +68,7 @@ services:
       - mailpit:/data
 
 #  postgres:
-#    image: wodby/postgres:$POSTGRES_TAG
+#    image: "wodby/postgres:${POSTGRES_TAG}"
 #    container_name: "${PROJECT_NAME}_postgres"
 #    stop_grace_period: 30s
 #    environment:
@@ -81,7 +81,7 @@ services:
 #    - database:/var/lib/postgresql/data
 
 #  apache:
-#    image: wodby/apache:$APACHE_TAG
+#    image: "wodby/apache:${APACHE_TAG}"
 #    container_name: "${PROJECT_NAME}_apache"
 #    depends_on:
 #    - php
@@ -96,7 +96,7 @@ services:
 #    - "traefik.http.routers.${PROJECT_NAME}_apache.tls"
 
 #  varnish:
-#    image: wodby/varnish:$VARNISH_TAG
+#    image: "wodby/varnish:${VARNISH_TAG}"
 #    container_name: "${PROJECT_NAME}_varnish"
 #    depends_on:
 #    - nginx
@@ -114,11 +114,11 @@ services:
 
 #  redis:
 #    container_name: "${PROJECT_NAME}_redis"
-#    image: wodby/redis:$REDIS_TAG
+#    image: "wodby/redis:${REDIS_TAG}"
 
 #  adminer:
 #    container_name: "${PROJECT_NAME}_adminer"
-#    image: wodby/adminer:$ADMINER_TAG
+#    image: "wodby/adminer:${ADMINER_TAG}"
 #    environment:
 #      # For PostgreSQL:
 #      #      ADMINER_DEFAULT_DB_DRIVER: pgsql
@@ -143,7 +143,7 @@ services:
 #    - "traefik.http.routers.${PROJECT_NAME}_pma.tls"
 
 #  solr:
-#    image: wodby/solr:$SOLR_TAG
+#    image: "wodby/solr:${SOLR_TAG}"
 #    container_name: "${PROJECT_NAME}_solr"
 #    environment:
 #      SOLR_DEFAULT_CONFIG_SET: $SOLR_CONFIG_SET
@@ -155,7 +155,7 @@ services:
 #    - "traefik.http.routers.${PROJECT_NAME}_solr.tls"
 
 #  zookeeper:
-#    image: zookeeper:$ZOOKEEPER_TAG
+#    image: "zookeeper:${ZOOKEEPER_TAG}"
 #    container_name: "${PROJECT_NAME}_zookeeper"
 #    environment:
 #      ZOO_MY_ID: 1
@@ -163,7 +163,7 @@ services:
 #      ZOO_4LW_COMMANDS_WHITELIST: mntr, conf, ruok
 
 #  drupal-node:
-#    image: wodby/drupal-node:$DRUPAL_NODE_TAG
+#    image: "wodby/drupal-node:${DRUPAL_NODE_TAG}"
 #    container_name: "${PROJECT_NAME}_drupal_nodejs"
 #    labels:
 #    - "traefik.http.routers.${PROJECT_NAME}_drupal_node.rule=Host(`drupal_node.${PROJECT_BASE_URL}`)"
@@ -174,14 +174,14 @@ services:
 
 #  memcached:
 #    container_name: "${PROJECT_NAME}_memcached"
-#    image: wodby/memcached:$MEMCACHED_TAG
+#    image: "wodby/memcached:${MEMCACHED_TAG}"
 
 #  rsyslog:
 #    container_name: "${PROJECT_NAME}_rsyslog"
-#    image: wodby/rsyslog:$RSYSLOG_TAG
+#    image: "wodby/rsyslog:${RSYSLOG_TAG}"
 
 #  athenapdf:
-#    image: arachnysdocker/athenapdf-service:$ATHENAPDF_TAG
+#    image: "arachnysdocker/athenapdf-service:${ATHENAPDF_TAG}"
 #    container_name: "${PROJECT_NAME}_athenapdf"
 #    environment:
 #      WEAVER_AUTH_KEY: weaver-auth-key
@@ -192,7 +192,7 @@ services:
 #      WEAVER_CONVERSION_FALLBACK: "false"
 
 #  node:
-#    image: wodby/node:$NODE_TAG
+#    image: "wodby/node:${NODE_TAG}"
 #    container_name: "${PROJECT_NAME}_node"
 #    working_dir: /var/www/html/path/to/theme/to/build
 #    labels:
@@ -205,7 +205,7 @@ services:
 #    command: sh -c 'yarn install && yarn run start'
 
 #  elasticsearch:
-#    image: wodby/elasticsearch:$ELASTICSEARCH_TAG
+#    image: "wodby/elasticsearch:${ELASTICSEARCH_TAG}"
 #    container_name: "${PROJECT_NAME}_elasticsearch"
 #    environment:
 #      ES_JAVA_OPTS: "-Xms500m -Xmx500m"
@@ -215,7 +215,7 @@ services:
 #        hard: -1
 
 #  kibana:
-#    image: wodby/kibana:$KIBANA_TAG
+#    image: "wodby/kibana:${KIBANA_TAG}"
 #    container_name: "${PROJECT_NAME}_kibana"
 #    depends_on:
 #    - elasticsearch
@@ -227,10 +227,10 @@ services:
 
 #  opensmtpd:
 #    container_name: "${PROJECT_NAME}_opensmtpd"
-#    image: wodby/opensmtpd:$OPENSMTPD_TAG
+#    image: "wodby/opensmtpd:${OPENSMTPD_TAG}"
 
 #  ngrok:
-#    image: wernight/ngrok:$NGROK_TAG
+#    image: "wernight/ngrok:${NGROK_TAG}"
 #    container_name: "${PROJECT_NAME}_ngrok"
 #    environment:
 #      NGROK_AUTH: $NGROK_AUTH

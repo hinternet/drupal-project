@@ -46,9 +46,9 @@ while true; do
 done
 
 if [ "$WEB_SERVER" = "nginx" ]; then
-	sed ${SED_INLINE} '43,58 s/^#//' ./docker-compose.yml
+	sed ${SED_INLINE} '42,58 s/^#//' ./docker-compose.yml
 else
-	sed ${SED_INLINE} '82,95 s/^#//' ./docker-compose.yml
+	sed ${SED_INLINE} '82,96 s/^#//' ./docker-compose.yml
 fi
 
 ### Enable ngrok proxy
