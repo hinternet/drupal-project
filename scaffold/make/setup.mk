@@ -6,7 +6,7 @@ setup: ./scaffold/templates/docker/.env.dist ./scaffold/scripts/setup.sh ./scaff
 
 ## clean	:	Delete project setup files
 .PHONY: clean
-clean: ./scaffold/scripts/clean.sh _setenv
+clean: ./scaffold/scripts/clean.sh
 	@./scaffold/scripts/clean.sh
 
 .PHONY: _clean
@@ -43,8 +43,9 @@ _clean:
 	@echo "********************************"
 
 ## done	:	Set the scaffold as done, preventing furhter modifications
-done: ./scaffold/scripts/done.sh _setenv
+done: ./scaffold/scripts/done.sh
 	@./scaffold/scripts/done.sh
+	@rm -rf ./scaffold
 
 _done:
 	@echo "Intializing git repository"
