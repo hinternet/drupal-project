@@ -24,12 +24,14 @@ _clean:
 	rm -f ./phpunit* 2>&1
 	rm -f ./rector* 2>&1
 	rm -f ./traefik.toml 2>&1
+	rm -rf ./*.log
 	rm -f ./web/sites/default/settings.* 2>&1
 	rm -rf ./.lighthouseci* 2>&1
 	rm -rf ./.ssl 2>&1
 	rm -rf ./config 2>&1
 	rm -rf ./docs 2>&1
-	rm -rf ./web/sites/default/files 2>&1
+	rm -rf ./drush 2>&1
+	rm -rf ./web 2>&1
 	rm -rf ./files-private 2>&1
 	rm -rf ./scripts 2>&1
 	rm -rf ./tests/behat 2>&1
@@ -52,7 +54,7 @@ ifneq ($(wildcard .git),)
 endif
 	@git init;
 	@echo "Comment scaffold ignored files"
-	@sed $(SED_INLINE) '3,24 s/^/#/' ./.gitignore
+	@$(call replace_inline,'3,25 s/^/#/',./.gitignore)
 	@echo "Disabling setup routines"
 	@mv ./scaffold/make/setup.mk ./scaffold/make/setup.mk.orig
 	@git add .
@@ -63,6 +65,8 @@ _docker:
 	cp ./scaffold/templates/docker/docker-compose.yml ./docker-compose.yml
 	cp ./scaffold/templates/docker/traefik.toml ./traefik.toml
 	cp -r ./scaffold/templates/docker/.ssl ./
+	mkdir -p ./config/docker
+	cp ./scaffold/templates/docker/docker-compose.*.yml ./config/docker/
 
 _setup_drupal:
 	@echo "Setup Drupal files";
@@ -91,3 +95,8 @@ _setup_qa:
 	cp ./scaffold/templates/testing/rector.yml ./
 	cp ./scaffold/templates/testing/.eslintignore ./
 	cp ./scaffold/templates/testing/.eslintrc.json ./
+
+_setup_scripts:
+	mkdir -p ./scripts
+	cp ./scaffold/scripts/generate-salt.sh ./scripts/
+	cp ./scaffold/scripts/enforce-permissions.sh ./scripts/

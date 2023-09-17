@@ -126,8 +126,8 @@
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ],
         "install-drupal": [
-            "./scaffold/scripts/generate-salt.sh",
-            "./scaffold/scripts/enforce-permissions.sh"
+            "./scripts/generate-salt.sh",
+            "./scripts/enforce-permissions.sh"
         ]
     },
     "extra": {

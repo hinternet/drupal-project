@@ -7,16 +7,17 @@ else
 	CURRENT_OS := $(OS)
 endif
 
-ifeq ($(CURRENT_OS),Darwin)
-	SED_INLINE := -i ''
-else
-	SED_INLINE := -i
-endif
-
 export CURRENT_OS
-export SED_INLINE
 
-include ./scaffold/make/*.mk
+define replace_inline
+	ifeq ($(CURRENT_OS),Darwin)
+		sed -i '' $(1) $(2)
+	else
+		sed -i $(1) $(2)
+	endif
+endef
+
+include $(shell find . -type f -name '*.mk')
 
 .PHONY: help
 help:
