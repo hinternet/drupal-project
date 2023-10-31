@@ -71,14 +71,14 @@ _docker:
 	cp ./scaffold/templates/make/docker.mk ./config/docker/
 
 _setup_drupal:
-	@echo "Setup Drupal files";
-	cp ./scaffold/templates/drupal/composer.json ./;
+	@echo "Setup Drupal files for $(kind)";
+	cp ./scaffold/templates/drupal/composer.$(kind).json ./;
 	cp ./scaffold/templates/drupal/load.environment.php ./;
 	mkdir -p web/sites/default/files;
 	mkdir -p files-private;
 	cp ./scaffold/templates/drupal/settings.php ./web/sites/default/;
 	cp ./scaffold/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php;
-	cp -r ./scaffold/templates/drupal/config ./
+	cp -r ./scaffold/templates/drupal/config.$(kind) ./
 	cp -r ./scaffold/templates/drupal/drush ./
 
 _setup_tests: _setup_phpunit _setup_lighthouse _setup_qa
