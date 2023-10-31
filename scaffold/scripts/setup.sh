@@ -70,9 +70,20 @@ while true; do
     esac
 done
 
+### Select webserver
+while true; do
+    printf "Choose kind of project ([monolithic] or decoupled): "
+    read -r REPLY;
+    KIND_PROJECT=${REPLY:-monolithic}
+    case $KIND_PROJECT in
+        monolithic|decoupled* ) export KIND_PROJECT; break;;
+        * ) echo "Invalid answer, try again.";;
+    esac
+done
+
 ### Setup Drupal settings
 echo "---------------------------------------";
-make -f "./scaffold/make/setup.mk" _setup_drupal;
+make -f "./scaffold/make/setup.mk" _setup_drupal $KIND_PROJECT;
 
 ### Replace vars with provided settings
 envsubst <"./scaffold/templates/docker/.env.dist" >"./.env.dist";
