@@ -1,0 +1,7 @@
+login_redirection:
+  anonymous: null
+  authenticated: /
+  administator: /admin
+  content_manager: /admin/content/clausulas
+  nextjs: /
+exclude_urls: ''

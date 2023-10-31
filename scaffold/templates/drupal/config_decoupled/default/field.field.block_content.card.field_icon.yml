@@ -1,0 +1,21 @@
+uuid: c8e525e3-cc99-4065-a970-e720b5021302
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card
+    - field.storage.block_content.field_icon
+  module:
+    - options
+id: block_content.card.field_icon
+field_name: field_icon
+entity_type: block_content
+bundle: card
+label: Icono
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

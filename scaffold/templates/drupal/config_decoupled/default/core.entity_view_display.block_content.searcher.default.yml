@@ -1,0 +1,24 @@
+uuid: 11453225-ffad-4fcb-9b76-d7f3a074ff1f
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.searcher
+    - field.field.block_content.searcher.body
+  module:
+    - text
+id: block_content.searcher.default
+targetEntityType: block_content
+bundle: searcher
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

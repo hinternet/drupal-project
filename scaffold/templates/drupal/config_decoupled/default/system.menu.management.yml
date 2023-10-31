@@ -1,0 +1,8 @@
+uuid: 828051e9-9e6e-4b04-bb5f-5d4a2170f8aa
+langcode: es
+status: true
+dependencies: {  }
+id: management
+label: Gestión
+description: 'Menú de gestión para el gestor de contenidos'
+locked: false

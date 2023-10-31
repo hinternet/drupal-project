@@ -1,0 +1,11 @@
+uuid: 02e02a5b-23bc-4014-888b-791be980516c
+langcode: es
+status: true
+dependencies: {  }
+id: node.landing
+site_resolver: site_selector
+configuration:
+  sites:
+    default: default
+revalidator: ''
+revalidator_configuration: {  }

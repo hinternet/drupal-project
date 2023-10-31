@@ -1,0 +1,11 @@
+uuid: b9d1c51b-e189-4762-9804-f51a5cf7f22d
+langcode: es
+status: true
+dependencies: {  }
+id: default
+label: Default
+base_url: 'https://default-des.demohiberus.com/'
+preview_url: 'https://default.demohiberus.com/api/draft'
+preview_secret: Ag595p7H|xy`
+revalidate_url: ''
+revalidate_secret: ''

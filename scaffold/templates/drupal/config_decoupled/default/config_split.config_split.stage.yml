@@ -1,0 +1,18 @@
+uuid: d02a1715-43df-446a-8f61-6d281f7ebfa7
+langcode: es
+status: true
+dependencies: {  }
+id: stage
+label: Pre-production
+description: ''
+weight: 0
+folder: ../config/stage
+module:
+  dblog: 0
+theme: {  }
+blacklist:
+  - next.next_site.default
+graylist:
+  - environment_indicator.indicator
+graylist_dependents: true
+graylist_skip_equal: true

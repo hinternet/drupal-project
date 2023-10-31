@@ -1,0 +1,18 @@
+uuid: 5cd688b3-7952-49af-88f3-d4a8d5aa362a
+langcode: es
+status: true
+dependencies: {  }
+id: prod
+label: Production
+description: ''
+weight: 0
+folder: ../config/prod
+module:
+  syslog: 0
+theme: {  }
+blacklist:
+  - next.next_site.default
+graylist:
+  - environment_indicator.indicator
+graylist_dependents: true
+graylist_skip_equal: true

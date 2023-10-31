@@ -1,0 +1,85 @@
+uuid: bd092cf0-156a-4536-ae0c-b3b0920ca690
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.landing.body
+    - field.field.node.landing.layout_builder__layout
+    - field.field.node.landing.migas
+    - node.type.landing
+  module:
+    - layout_builder
+    - layout_builder_restrictions
+    - layout_discovery
+    - link
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+        components: {  }
+        third_party_settings: {  }
+  layout_builder_restrictions:
+    allowed_block_categories: {  }
+    entity_view_mode_restriction:
+      allowed_layouts: {  }
+      denylisted_blocks: {  }
+      allowlisted_blocks: {  }
+      restricted_categories:
+        - '@entity'
+        - Block
+        - 'Chaos Tools'
+        - 'Content fields'
+        - 'Custom block types'
+        - Devel
+        - Forms
+        - Help
+        - 'Listas (Views)'
+        - 'Lists (Views)'
+        - Menus
+        - System
+        - Usuario
+        - core
+    entity_view_mode_restriction_by_region:
+      allowed_layouts: {  }
+id: node.landing.default
+targetEntityType: node
+bundle: landing
+mode: default
+content:
+  breadcrumbs:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  migas:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 111
+    region: content
+hidden:
+  body: true
+  langcode: true
+  layout_builder__layout: true
+  links: true
+  search_api_excerpt: true

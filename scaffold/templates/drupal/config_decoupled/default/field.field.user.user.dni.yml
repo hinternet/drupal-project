@@ -1,0 +1,20 @@
+uuid: bed82660-311f-4161-9bfe-74c67151b052
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.dni
+  module:
+    - user
+id: user.user.dni
+field_name: dni
+entity_type: user
+bundle: user
+label: DNI
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

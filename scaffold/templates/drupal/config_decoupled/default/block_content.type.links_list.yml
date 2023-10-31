@@ -1,0 +1,8 @@
+uuid: b7641465-4e60-4c2c-9f94-26aa48401e7b
+langcode: es
+status: true
+dependencies: {  }
+id: links_list
+label: 'Listado de enlaces'
+revision: 0
+description: ''

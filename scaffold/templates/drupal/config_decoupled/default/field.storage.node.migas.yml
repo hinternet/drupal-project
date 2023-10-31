@@ -1,0 +1,19 @@
+uuid: 9af92269-1322-4e78-8b72-602d89288be9
+langcode: es
+status: true
+dependencies:
+  module:
+    - computed_breadcrumbs
+    - node
+id: node.migas
+field_name: migas
+entity_type: node
+type: computed_breadcrumbs
+settings: {  }
+module: computed_breadcrumbs
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

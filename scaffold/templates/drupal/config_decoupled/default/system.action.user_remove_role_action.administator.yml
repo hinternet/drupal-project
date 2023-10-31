@@ -1,0 +1,14 @@
+uuid: d7e67673-45d4-4011-a6b5-f1b70bd9f27f
+langcode: es
+status: true
+dependencies:
+  config:
+    - user.role.administator
+  module:
+    - user
+id: user_remove_role_action.administator
+label: 'Elimina el rol Administador al(los) usuario(s) seleccionado(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: administator

@@ -1,0 +1,8 @@
+uuid: 762a3efe-7b59-4d11-900c-1023434f21b7
+langcode: es
+status: true
+dependencies: {  }
+id: searcher
+label: Buscador
+revision: 0
+description: ''

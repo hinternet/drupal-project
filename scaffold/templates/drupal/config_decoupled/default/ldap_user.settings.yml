@@ -1,0 +1,29 @@
+langcode: es
+drupalAcctProvisionServer: gobierno_aragon
+ldapEntryProvisionServer: null
+drupalAcctProvisionTriggers:
+  - drupal_on_login
+ldapEntryProvisionTriggers: {  }
+orphanedDrupalAcctBehavior: ldap_user_orphan_email
+orphanedDrupalAcctReportingInbox: ''
+orphanedCheckQty: 100
+orphanedAccountCheckInterval: weekly
+userConflictResolve: resolve
+manualAccountConflict: conflict_reject
+acctCreation: ldap_behaviour
+disableAdminPasswordField: false
+userUpdateCronQuery: none
+userUpdateCronInterval: monthly
+ldapUserSyncMappings:
+  drupal:
+    field-dni:
+      ldap_attr: '[employeeNumber]'
+      user_attr: '[field.dni]'
+      convert: false
+      user_tokens: ''
+      config_module: ldap_user
+      prov_module: ldap_user
+      prov_events:
+        - create_drupal_user
+        - sync_to_drupal_user
+  ldap: {  }

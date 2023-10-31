@@ -1,0 +1,23 @@
+uuid: 816dceb9-f7df-4203-b1f3-9119f01bbb24
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.migas
+    - node.type.landing
+  module:
+    - computed_breadcrumbs
+id: node.landing.migas
+field_name: migas
+entity_type: node
+bundle: landing
+label: 'Migas de pan'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: '1'
+  title: '0'
+field_type: computed_breadcrumbs

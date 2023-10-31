@@ -1,0 +1,13 @@
+uuid: fe39d3b2-3f5c-4e9f-b2ee-6151c76299e6
+langcode: es
+status: true
+dependencies: {  }
+id: document
+label: Documento
+description: ''
+source: file
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_file
+field_map: {  }

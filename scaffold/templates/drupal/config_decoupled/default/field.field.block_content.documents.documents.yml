@@ -1,0 +1,29 @@
+uuid: c4e2777a-3e34-4cce-9e84-61f394fe9e14
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.documents
+    - field.storage.block_content.documents
+    - media.type.document
+id: block_content.documents.documents
+field_name: documents
+entity_type: block_content
+bundle: documents
+label: Documentos
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

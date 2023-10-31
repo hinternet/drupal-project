@@ -1,0 +1,40 @@
+uuid: 6deb6a84-6639-49f7-92eb-f20d470a947a
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.documents
+    - field.field.block_content.documents.documents
+  module:
+    - media_library
+    - media_library_edit
+id: block_content.documents.default
+targetEntityType: block_content
+bundle: documents
+mode: default
+content:
+  documents:
+    type: media_library_widget
+    weight: 26
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings:
+      media_library_edit:
+        show_edit: '1'
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }
