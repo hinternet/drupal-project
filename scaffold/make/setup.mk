@@ -38,6 +38,7 @@ _clean:
 	rm -rf ./tests/cypress 2>&1
 	rm -rf ./tests/phpunit 2>&1
 	rm -rf ./vendor 2>&1
+	rm -rf decoupled monolithic
 # Restore editorconfig since gets modified during Drupal installation.
 	git checkout -- .editorconfig 2>&1
 	@echo "********************************"
@@ -71,15 +72,20 @@ _docker:
 	cp ./scaffold/templates/make/docker.mk ./config/docker/
 
 _setup_drupal:
-	@echo "Setup Drupal files for $(kind)";
-	cp ./scaffold/templates/drupal/composer.$(kind).json ./;
+	@echo "Setup Drupal files";
 	cp ./scaffold/templates/drupal/load.environment.php ./;
 	mkdir -p web/sites/default/files;
 	mkdir -p files-private;
 	cp ./scaffold/templates/drupal/settings.php ./web/sites/default/;
 	cp ./scaffold/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php;
-	cp -r ./scaffold/templates/drupal/config.$(kind) ./
 	cp -r ./scaffold/templates/drupal/drush ./
+_setup_drupal_decoupled: _setup_drupal
+	cp ./scaffold/templates/drupal/composer.decoupled.json ./;
+	cp -r ./scaffold/templates/drupal/config_decoupled ./
+_setup_drupal_monolithic: _setup_drupal
+	cp ./scaffold/templates/drupal/composer.monolithic.json ./;
+	cp -r ./scaffold/templates/drupal/config_monolithic ./
+
 
 _setup_tests: _setup_phpunit _setup_lighthouse _setup_qa
 	cp ./scaffold/templates/docker/docker-compose.tests.yml ./

@@ -83,7 +83,7 @@ done
 
 ### Setup Drupal settings
 echo "---------------------------------------";
-make -f "./scaffold/make/setup.mk" kind=$KIND_PROJECT _setup_drupal;
+make -f "./scaffold/make/setup.mk" _setup_drupal_$KIND_PROJECT;
 
 ### Replace vars with provided settings
 envsubst <"./scaffold/templates/docker/.env.dist" >"./.env.dist";
