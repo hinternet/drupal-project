@@ -40,7 +40,6 @@
         "drupal/environment_indicator": "^4.0",
         "drupal/faqfield": "^7.1",
         "drupal/fast_404": "*",
-        "drupal/file_rename": "1.0.x-dev@dev",
         "drupal/flood_control": "^2.3",
         "drupal/gin": "^3.0@rc",
         "drupal/gin_login": "^2.0",
