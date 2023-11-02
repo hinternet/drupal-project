@@ -33,7 +33,6 @@ module:
   datetime_range: 0
   decoupled_router: 0
   dynamic_page_cache: 0
-  easy_breadcrumb: 0
   editor: 0
   entity_reference_revisions: 0
   environment_indicator: 0
@@ -68,7 +67,6 @@ module:
   layout_builder_restrictions_by_region: 0
   layout_builder_save_and_edit: 0
   layout_discovery: 0
-  ldap: 0
   ldap_authentication: 0
   ldap_authorization: 0
   ldap_query: 0
@@ -103,7 +101,6 @@ module:
   seckit: 0
   serialization: 0
   settings_tray: 0
-  shs: 0
   simple_oauth: 0
   subrequests: 0
   system: 0
