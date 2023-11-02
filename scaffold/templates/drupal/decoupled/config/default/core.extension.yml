@@ -6,7 +6,6 @@ module:
   admin_toolbar_links_access_filter: 0
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
-  authorization: 0
   base_field_override_ui: 0
   big_pipe: 0
   block: 0
@@ -110,7 +109,6 @@ module:
   views_bulk_operations: 0
   views_ui: 0
   pathauto: 1
-  externalauth: 10
   views: 10
   paragraphs: 11
   minimal: 1000
