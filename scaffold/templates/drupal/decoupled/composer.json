@@ -48,7 +48,6 @@
         "drupal/hux": "^1.0",
         "drupal/imageapi_optimize": "^4.0",
         "drupal/jsonapi_extras": "^3.23",
-        "drupal/jsonapi_include_lb": "^1.0@dev",
         "drupal/jsonapi_menu_items": "^1.2",
         "drupal/jsonapi_search_api": "^1.0@RC",
         "drupal/layout_builder_iframe_modal": "^1.3",
