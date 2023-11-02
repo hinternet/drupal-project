@@ -67,11 +67,6 @@ module:
   layout_builder_restrictions_by_region: 0
   layout_builder_save_and_edit: 0
   layout_discovery: 0
-  ldap_authentication: 0
-  ldap_authorization: 0
-  ldap_query: 0
-  ldap_servers: 0
-  ldap_user: 0
   link: 0
   list_predefined_options: 0
   locale: 0

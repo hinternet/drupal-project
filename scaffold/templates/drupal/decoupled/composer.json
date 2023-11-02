@@ -154,14 +154,8 @@
             "drupal/core": "-p2"
         },
         "patches": {
-            "drupal/core": {
-                "Expose Layout Builder data to REST and JSON:API": "https://www.drupal.org/files/issues/2023-08-14/2942975-240.patch"
-            },
             "drupal/toolbar_menu": {
                 "css class name conflict with gin theme": "https://www.drupal.org/files/issues/2023-07-25/3271757-8.patch"
-            },
-            "drupal/ldap": {
-                "Use the ModuleHandlerInterface instead of the ModuleHandler concrete implementation": "https://www.drupal.org/files/issues/2022-09-09/Use-the-ModuleHandlerInterface-instead-of-the-ModuleHandler-concrete-implementation-3308789-2.patch"
             }
         },
         "drupal-scaffold": {
