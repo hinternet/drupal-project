@@ -38,8 +38,6 @@ _clean:
 	rm -rf ./tests/cypress 2>&1
 	rm -rf ./tests/phpunit 2>&1
 	rm -rf ./vendor 2>&1
-	rm -rf standard
-	rm -rf decoupled
 # Restore editorconfig since gets modified during Drupal installation.
 	git checkout -- .editorconfig 2>&1
 	@echo "********************************"
