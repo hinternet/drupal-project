@@ -70,7 +70,7 @@ while true; do
     esac
 done
 
-### Select webserver
+### Select project type
 while true; do
     printf "Choose project type ([standard] or decoupled): "
     read -r REPLY;
