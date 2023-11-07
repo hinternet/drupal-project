@@ -1,0 +1,206 @@
+{
+    "name": "hinternet/drupal-project",
+    "description": "Project template for Drupal projects with a relocated document root",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8",
+            "only": [
+                "drupal/*"
+            ]
+        },
+        "assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org",
+            "only": [
+                "npm-asset/*",
+                "bower-asset/*"
+            ]
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "composer/installers": "^2.1",
+        "cweagans/composer-patches": "^1.0",
+        "drupal/admin_toolbar": "^3.3",
+        "drupal/base_field_override_ui": "^1.1",
+        "drupal/block_form_alter": "^2.0",
+        "drupal/coffee": "^1.3",
+        "drupal/computed_breadcrumbs": "^1.1",
+        "drupal/config_split": "^1.9",
+        "drupal/consumers": "^1.17",
+        "drupal/core-composer-scaffold": "^10.1",
+        "drupal/core-recommended": "^10.1",
+        "drupal/cshs": "^4.0",
+        "drupal/ctools": "^4.0",
+        "drupal/decoupled_router": "^2.0",
+        "drupal/devel": "^5.0",
+        "drupal/environment_indicator": "^4.0",
+        "drupal/faqfield": "^7.1",
+        "drupal/fast_404": "*",
+        "drupal/flood_control": "^2.3",
+        "drupal/gin": "^3.0@rc",
+        "drupal/gin_login": "^2.0",
+        "drupal/health_check": "^3.0",
+        "drupal/honeypot": "^2.1",
+        "drupal/hux": "^1.0",
+        "drupal/imageapi_optimize": "^4.0",
+        "drupal/jsonapi_extras": "^3.23",
+        "drupal/jsonapi_menu_items": "^1.2",
+        "drupal/jsonapi_search_api": "^1.0@RC",
+        "drupal/layout_builder_iframe_modal": "^1.3",
+        "drupal/layout_builder_lock": "^1.2",
+        "drupal/layout_builder_operation_link": "^2.1",
+        "drupal/layout_builder_restrictions": "^2.17",
+        "drupal/layout_builder_save_and_edit": "^1.0",
+        "drupal/list_predefined_options": "^2.0@beta",
+        "drupal/media_gallery": "^2.0",
+        "drupal/media_library_edit": "^3.0",
+        "drupal/media_pdf_thumbnail": "^6.0@RC",
+        "drupal/module_filter": "^4.0",
+        "drupal/next": "^1.6",
+        "drupal/paragraphs": "^1.16",
+        "drupal/pathauto": "^1.11",
+        "drupal/r4032login": "*",
+        "drupal/rabbit_hole": "^1.0@beta",
+        "drupal/redirect": "^1.8",
+        "drupal/redirect_after_login": "*",
+        "drupal/seckit": "^2.0",
+        "drupal/simple_oauth": "^5.2",
+        "drupal/stage_file_proxy": "^2.1",
+        "drupal/structure_sync": "^2.0",
+        "drupal/subrequests": "^3.0",
+        "drupal/taxonomy_access_fix": "^4.0",
+        "drupal/token": "^1.11",
+        "drupal/toolbar_menu": "^3.0",
+        "drupal/twig_tools": "^2.0",
+        "drupal/views_bulk_operations": "^4.2",
+        "drush/drush": "^12.1",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2"
+    },
+    "require-dev": {
+        "behat/behat": "^3.10",
+        "dmore/behat-chrome-extension": "^1.3",
+        "drupal/core-dev": "^10",
+        "drupal/drupal-extension": "^5.0@alpha",
+        "mglaman/phpstan-drupal": "^1.1",
+        "micheh/phpcs-gitlab": "^1.1",
+        "phpmd/phpmd": "^2.11",
+        "phpro/grumphp": "^1.15",
+        "phpstan/phpstan-deprecation-rules": "^1.1"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "suggest": {
+        "drupal/block_list_override": "Remove unnecessary blocks from the block list for better UX and system performance.",
+        "drupal/eca": "ECA is a powerful, versatile, and user-friendly rules engine for Drupal 9+.",
+        "drupal/file_browser": "An alternative to Media when you actually need to handle your files.",
+        "drupal/inline_block_title_automatic": "Allows to control the user-facing title for inline blocks.",
+        "drupal/layoutcomponent": "Layout components provides a series of components available to be used out of the box.",
+        "drupal/layout_builder_component_attributes": "Allows editors to add HTML attributes to Layout Builder blocks.",
+        "drupal/metatags": "Allows you to automatically provide structured metadata, aka 'meta tags', about a website",
+        "drupal/robotstxt": "Generates the robots.txt file dynamically and gives you the chance to edit it from the web UI.",
+        "drupal/simple_sitemap": "Every webpage needs an automatic XML sitemap generator for SEO reasons.",
+        "drupal/toolbar_menu_clean": "It helps you create role-based menu, and don't mess with the default Drupal Administration menu.",
+        "drupal/tvp": "Allows to translate views page aliases, useful on multilingual sites."
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+     "config": {
+        "discard-changes": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpro/grumphp": true,
+            "metadrop/scripthor": true,
+            "oomphinc/composer-installers-extender": true,
+            "phpstan/extension-installer": true,
+            "cweagans/composer-patches": true
+        }
+    },
+    "autoload": {
+        "classmap": [
+            "./scaffold/templates/drupal/scripts/composer/ScriptHandler.php"
+        ],
+        "files": ["load.environment.php"]
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "install-drupal": [
+            "./scaffold/scripts/generate-salt.sh",
+            "./scaffold/scripts/enforce-permissions.sh"
+        ]
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "enable-patching": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/toolbar_menu": {
+                "css class name conflict with gin theme": "https://www.drupal.org/files/issues/2023-07-25/3271757-8.patch"
+            }
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            },
+            "file-mapping": {
+                "[project-root]/.editorconfig": false
+            }
+        },
+        "installer-types": [
+            "npm-asset",
+            "bower-asset"
+        ],
+        "installer-paths": {
+            "web/libraries/colorbox": [
+                "npm-asset/jquery-colorbox"
+            ],
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:npm-asset",
+                "type:bower-asset",
+                "vendor:ckeditor-plugin"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        }
+    }
+}

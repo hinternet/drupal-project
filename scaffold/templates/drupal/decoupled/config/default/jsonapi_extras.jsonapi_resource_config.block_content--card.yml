@@ -1,0 +1,133 @@
+uuid: 634b0596-6a25-4d95-a5ca-1f07edd99bb3
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card
+id: block_content--card
+disabled: false
+path: block_content/card
+resourceType: block_content--card
+resourceFields:
+  id:
+    disabled: false
+    fieldName: id
+    publicName: id
+    enhancer:
+      id: ''
+  uuid:
+    disabled: false
+    fieldName: uuid
+    publicName: uuid
+    enhancer:
+      id: ''
+  revision_id:
+    disabled: false
+    fieldName: revision_id
+    publicName: revision_id
+    enhancer:
+      id: ''
+  langcode:
+    disabled: false
+    fieldName: langcode
+    publicName: langcode
+    enhancer:
+      id: ''
+  type:
+    disabled: false
+    fieldName: type
+    publicName: type
+    enhancer:
+      id: ''
+  revision_created:
+    disabled: false
+    fieldName: revision_created
+    publicName: revision_created
+    enhancer:
+      id: ''
+  revision_user:
+    disabled: false
+    fieldName: revision_user
+    publicName: revision_user
+    enhancer:
+      id: ''
+  revision_log:
+    disabled: false
+    fieldName: revision_log
+    publicName: revision_log
+    enhancer:
+      id: ''
+  status:
+    disabled: false
+    fieldName: status
+    publicName: status
+    enhancer:
+      id: ''
+  info:
+    disabled: false
+    fieldName: info
+    publicName: info
+    enhancer:
+      id: ''
+  changed:
+    disabled: false
+    fieldName: changed
+    publicName: changed
+    enhancer:
+      id: ''
+  reusable:
+    disabled: false
+    fieldName: reusable
+    publicName: reusable
+    enhancer:
+      id: ''
+  default_langcode:
+    disabled: false
+    fieldName: default_langcode
+    publicName: default_langcode
+    enhancer:
+      id: ''
+  revision_default:
+    disabled: false
+    fieldName: revision_default
+    publicName: revision_default
+    enhancer:
+      id: ''
+  revision_translation_affected:
+    disabled: false
+    fieldName: revision_translation_affected
+    publicName: revision_translation_affected
+    enhancer:
+      id: ''
+  field_destacado:
+    disabled: false
+    fieldName: field_destacado
+    publicName: field_destacado
+    enhancer:
+      id: ''
+  field_icon:
+    disabled: false
+    fieldName: field_icon
+    publicName: field_icon
+    enhancer:
+      id: ''
+  field_image:
+    disabled: false
+    fieldName: field_image
+    publicName: field_image
+    enhancer:
+      id: ''
+  field_link:
+    disabled: false
+    fieldName: field_link
+    publicName: field_link
+    enhancer:
+      id: url_link
+      settings:
+        absolute_url: 0
+  field_text:
+    disabled: false
+    fieldName: field_text
+    publicName: field_text
+    enhancer:
+      id: ''

@@ -7,6 +7,7 @@ Project scaffold base to start developing Drupal projects, modules and even core
 
 To execute the scaffolding process, from your terminal run the following commands:
 1. `make setup`: collects configurarion and puts everything in place for the project.
+   2. If you want to start a traditional monolithic Drupal then you must to chose `standard` option, else if you want to start a decoupled drupal, then you must to chose `decoupled` option.
 2. `make onboard`: after setup is completed you must run this command to get your local environment ready to start the project.
 3. `make install`: this will run the Drupal installation script, after it you will have fully functional Drupal site.
 4. `make done`: this will terminate the scaffolding process, this command should be run ONLY if everything went well.

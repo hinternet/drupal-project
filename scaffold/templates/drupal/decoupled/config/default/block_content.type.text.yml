@@ -1,0 +1,8 @@
+uuid: 91adb030-59dd-416c-bda4-7aa2b8aa110d
+langcode: es
+status: true
+dependencies: {  }
+id: text
+label: Texto
+revision: 0
+description: ''

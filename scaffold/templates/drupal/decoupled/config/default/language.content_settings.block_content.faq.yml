@@ -1,0 +1,11 @@
+uuid: e2a037d7-250e-423e-8c78-982fa4516dac
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.faq
+id: block_content.faq
+target_entity_type_id: block_content
+target_bundle: faq
+default_langcode: site_default
+language_alterable: false

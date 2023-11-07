@@ -1,0 +1,14 @@
+_core:
+  default_config_hash: l58O_yEXSo-SeJi19LXdzTU1tNJG3lmnIhCitRkM1tk
+langcode: es
+uuid: 649c65a6-9208-41c3-97c7-31dc98061ae0
+name: Hiberus
+mail: admin@noreply.es
+slogan: ''
+page:
+  403: /node/3
+  404: /node/2
+  front: /user/login
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: es

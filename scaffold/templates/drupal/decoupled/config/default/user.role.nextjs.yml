@@ -1,0 +1,18 @@
+uuid: 1379996a-e4ec-42a1-95bf-1477ad538c1e
+langcode: es
+status: true
+dependencies:
+  module:
+    - media
+    - simple_oauth
+    - subrequests
+    - system
+id: nextjs
+label: NextJS
+weight: 3
+is_admin: null
+permissions:
+  - 'access content'
+  - 'issue subrequests'
+  - 'view media'
+  - 'view own simple_oauth entities'

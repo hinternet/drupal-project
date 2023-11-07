@@ -1,0 +1,182 @@
+uuid: dd652cf6-7684-4aed-9d20-211687852ea9
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card
+    - block_content.type.documents
+    - block_content.type.faq
+    - block_content.type.link
+    - block_content.type.links_list
+    - block_content.type.searcher
+    - block_content.type.text
+    - core.entity_view_display.node.landing.default
+    - filter.format.html
+    - media.type.document
+    - media.type.image
+    - node.type.landing
+  module:
+    - admin_toolbar_search
+    - block
+    - block_content
+    - comment
+    - contact
+    - field_ui
+    - file
+    - filter
+    - layout_builder
+    - media
+    - media_gallery
+    - node
+    - paragraphs
+    - path
+    - system
+    - taxonomy
+    - toolbar
+    - toolbar_menu
+    - views_ui
+id: content_manager
+label: 'Content manager'
+weight: 3
+is_admin: null
+permissions:
+  - 'access block library'
+  - 'access content'
+  - 'access content overview'
+  - 'access files overview'
+  - 'access media overview'
+  - 'access site in maintenance mode'
+  - 'access site-wide contact form'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'access user contact forms'
+  - 'administer block content'
+  - 'administer block types'
+  - 'administer block_content display'
+  - 'administer block_content fields'
+  - 'administer block_content form display'
+  - 'administer blocks'
+  - 'administer comment display'
+  - 'administer comment fields'
+  - 'administer comment form display'
+  - 'administer comment types'
+  - 'administer comments'
+  - 'administer contact forms'
+  - 'administer contact_message display'
+  - 'administer contact_message fields'
+  - 'administer contact_message form display'
+  - 'administer content types'
+  - 'administer display modes'
+  - 'administer media'
+  - 'administer media display'
+  - 'administer media fields'
+  - 'administer media form display'
+  - 'administer media types'
+  - 'administer media_gallery display'
+  - 'administer media_gallery fields'
+  - 'administer media_gallery form display'
+  - 'administer menu'
+  - 'administer node display'
+  - 'administer node fields'
+  - 'administer node form display'
+  - 'administer nodes'
+  - 'administer paragraph display'
+  - 'administer paragraph fields'
+  - 'administer paragraph form display'
+  - 'administer paragraphs settings'
+  - 'administer paragraphs types'
+  - 'administer taxonomy'
+  - 'administer toolbar menu'
+  - 'administer user display'
+  - 'administer user fields'
+  - 'administer user form display'
+  - 'administer views'
+  - 'bypass node access'
+  - 'configure all landing node layout overrides'
+  - 'configure any layout'
+  - 'configure editable landing node layout overrides'
+  - 'create and edit custom blocks'
+  - 'create card block content'
+  - 'create document media'
+  - 'create documents block content'
+  - 'create faq block content'
+  - 'create image media'
+  - 'create landing content'
+  - 'create link block content'
+  - 'create links_list block content'
+  - 'create media'
+  - 'create searcher block content'
+  - 'create text block content'
+  - 'create url aliases'
+  - 'delete all revisions'
+  - 'delete any card block content'
+  - 'delete any card block content revisions'
+  - 'delete any document media'
+  - 'delete any documents block content'
+  - 'delete any documents block content revisions'
+  - 'delete any faq block content'
+  - 'delete any faq block content revisions'
+  - 'delete any file'
+  - 'delete any image media'
+  - 'delete any landing content'
+  - 'delete any link block content'
+  - 'delete any link block content revisions'
+  - 'delete any links_list block content'
+  - 'delete any links_list block content revisions'
+  - 'delete any media'
+  - 'delete any searcher block content'
+  - 'delete any searcher block content revisions'
+  - 'delete any text block content'
+  - 'delete any text block content revisions'
+  - 'delete landing revisions'
+  - 'delete media'
+  - 'delete own document media'
+  - 'delete own files'
+  - 'delete own image media'
+  - 'delete own landing content'
+  - 'edit any card block content'
+  - 'edit any document media'
+  - 'edit any documents block content'
+  - 'edit any faq block content'
+  - 'edit any image media'
+  - 'edit any landing content'
+  - 'edit any link block content'
+  - 'edit any links_list block content'
+  - 'edit any searcher block content'
+  - 'edit any text block content'
+  - 'edit behavior plugin settings'
+  - 'edit own comments'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own landing content'
+  - 'post comments'
+  - 'revert all revisions'
+  - 'revert any card block content revisions'
+  - 'revert any documents block content revisions'
+  - 'revert any faq block content revisions'
+  - 'revert any link block content revisions'
+  - 'revert any links_list block content revisions'
+  - 'revert any searcher block content revisions'
+  - 'revert any text block content revisions'
+  - 'revert landing revisions'
+  - 'skip comment approval'
+  - 'update any media'
+  - 'update media'
+  - 'use admin toolbar search'
+  - 'use text format html'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view any card block content history'
+  - 'view any documents block content history'
+  - 'view any faq block content history'
+  - 'view any link block content history'
+  - 'view any links_list block content history'
+  - 'view any searcher block content history'
+  - 'view any text block content history'
+  - 'view landing revisions'
+  - 'view management in toolbar'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'
+  - 'view unpublished paragraphs'

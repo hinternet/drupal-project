@@ -1,0 +1,9 @@
+uuid: b5ba5a17-cbf5-46d1-a4c0-f730cbce193a
+langcode: es
+status: true
+dependencies: {  }
+id: administator
+label: Administador
+weight: 2
+is_admin: true
+permissions: {  }

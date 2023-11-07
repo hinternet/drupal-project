@@ -1,0 +1,30 @@
+uuid: be4fd3a3-1786-444e-b358-8c49798be01d
+langcode: es
+status: true
+dependencies: {  }
+name: HTML
+format: html
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: false
+    weight: -10
+    settings:
+      allowed_html: '<span class="thin extralight light regular medium semibold bold extrabold black wysiwyg-text-xs wysiwyg-text-sm wysiwyg-text-base wysiwyg-text-lg wysiwyg-text-xl wysiwyg-text-2xl wysiwyg-text-3xl wysiwyg-text-4xl wysiwyg-text-5xl wysiwyg-text-6xl wysiwyg-text-7xl wysiwyg-text-8xl wysiwyg-text-9xl">'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_url:
+    id: filter_url
+    provider: filter
+    status: true
+    weight: 0
+    settings:
+      filter_url_length: 100
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }

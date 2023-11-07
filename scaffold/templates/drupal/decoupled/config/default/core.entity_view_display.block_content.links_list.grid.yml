@@ -1,0 +1,32 @@
+uuid: 5c0c2e11-3a5a-425a-bad0-4e1719462a9d
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.links_list
+    - core.entity_view_mode.block_content.grid
+    - field.field.block_content.links_list.field_links
+  module:
+    - entity_reference_revisions
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: block_content.links_list.grid
+targetEntityType: block_content
+bundle: links_list
+mode: grid
+content:
+  field_links:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,13 @@
+uuid: 3654ad0c-b45d-47c4-8a35-35451b97fd7f
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: sOb26JSy3fGpWkvR0WYN6_hMqj_6d1rvbvrkzp1yya0
+id: node_make_sticky_action
+label: 'Fijar contenido'
+type: node
+plugin: node_make_sticky_action
+configuration: {  }

@@ -1,0 +1,14 @@
+uuid: 0b95d167-f3e0-4345-bd13-4b4af8b47a33
+langcode: es
+status: true
+dependencies:
+  config:
+    - user.role.nextjs
+  module:
+    - user
+id: user_remove_role_action.nextjs
+label: 'Elimina el rol nextjs al(los) usuario(s) seleccionado(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: nextjs

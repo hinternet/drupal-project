@@ -1,0 +1,31 @@
+uuid: 92107ad5-d1d7-4cd1-ae80-b1890121c6a2
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card
+    - core.entity_view_mode.block_content.imagen_izquierda
+    - field.field.block_content.card.field_destacado
+    - field.field.block_content.card.field_icon
+    - field.field.block_content.card.field_image
+    - field.field.block_content.card.field_link
+    - field.field.block_content.card.field_text
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: block_content.card.imagen_izquierda
+targetEntityType: block_content
+bundle: card
+mode: imagen_izquierda
+content: {  }
+hidden:
+  field_destacado: true
+  field_icon: true
+  field_image: true
+  field_link: true
+  field_text: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,46 @@
+uuid: 964fcb04-663c-4f9f-b3a0-c56ec7256efe
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.faq
+    - field.field.block_content.faq.field_faqs
+  module:
+    - faqfield
+id: block_content.faq.default
+targetEntityType: block_content
+bundle: faq
+mode: default
+content:
+  field_faqs:
+    type: faqfield_default
+    weight: 26
+    region: content
+    settings:
+      answer_widget: text_format
+      question_title: Pregunta
+      answer_title: Respuesta
+      question_field_required: false
+      answer_field_required: false
+      advanced:
+        question_length: 255
+        question_size: 100
+        question_rows: 0
+        answer_rows: 3
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

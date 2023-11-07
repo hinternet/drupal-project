@@ -70,9 +70,20 @@ while true; do
     esac
 done
 
+### Select project type
+while true; do
+    printf "Choose project type ([standard] or decoupled): "
+    read -r REPLY;
+    PROJECT_TYPE=${REPLY:-standard}
+    case $PROJECT_TYPE in
+        standard|decoupled* ) export PROJECT_TYPE; break;;
+        * ) echo "Invalid answer, try again.";;
+    esac
+done
+
 ### Setup Drupal settings
 echo "---------------------------------------";
-make -f "./scaffold/make/setup.mk" _setup_drupal;
+make -f "./scaffold/make/setup.mk" _setup_drupal_$PROJECT_TYPE;
 
 ### Replace vars with provided settings
 envsubst <"./scaffold/templates/docker/.env.dist" >"./.env.dist";

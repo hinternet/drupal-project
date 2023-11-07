@@ -1,0 +1,9 @@
+uuid: 8d6a53ab-e5b2-43ea-921b-9eeeccf70425
+langcode: es
+status: true
+dependencies: {  }
+id: management
+label: Gestión
+weight: null
+menu: management
+rewrite_label: false

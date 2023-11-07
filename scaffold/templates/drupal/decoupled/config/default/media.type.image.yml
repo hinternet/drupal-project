@@ -1,0 +1,13 @@
+uuid: e51bfc60-559b-4761-a9f7-7a5688b95606
+langcode: es
+status: true
+dependencies: {  }
+id: image
+label: Imagen
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map: {  }

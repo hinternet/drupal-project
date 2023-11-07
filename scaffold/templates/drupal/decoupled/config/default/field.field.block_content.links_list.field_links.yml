@@ -1,0 +1,34 @@
+uuid: b8bd8510-80f6-4718-ba81-79c6b9e56e88
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.links_list
+    - field.storage.block_content.field_links
+    - paragraphs.paragraphs_type.link
+  module:
+    - entity_reference_revisions
+id: block_content.links_list.field_links
+field_name: field_links
+entity_type: block_content
+bundle: links_list
+label: Links
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      link: link
+    negate: 0
+    target_bundles_drag_drop:
+      document:
+        weight: 3
+        enabled: false
+      link:
+        weight: 4
+        enabled: true
+field_type: entity_reference_revisions

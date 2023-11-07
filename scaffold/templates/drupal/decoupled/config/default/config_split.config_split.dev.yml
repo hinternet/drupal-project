@@ -1,0 +1,19 @@
+uuid: aefb2973-9f76-4964-b615-c0b68ac8d255
+langcode: es
+status: true
+dependencies: {  }
+id: dev
+label: Develop
+description: ''
+weight: 0
+folder: ../config/dev
+module:
+  devel: 0
+  dblog: 0
+theme: {  }
+blacklist:
+  - next.next_site.default
+graylist:
+  - environment_indicator.indicator
+graylist_dependents: true
+graylist_skip_equal: true

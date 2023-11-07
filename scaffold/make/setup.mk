@@ -72,14 +72,19 @@ _docker:
 
 _setup_drupal:
 	@echo "Setup Drupal files";
-	cp ./scaffold/templates/drupal/composer.json ./;
 	cp ./scaffold/templates/drupal/load.environment.php ./;
 	mkdir -p web/sites/default/files;
 	mkdir -p files-private;
 	cp ./scaffold/templates/drupal/settings.php ./web/sites/default/;
 	cp ./scaffold/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php;
-	cp -r ./scaffold/templates/drupal/config ./
 	cp -r ./scaffold/templates/drupal/drush ./
+_setup_drupal_decoupled: _setup_drupal
+	cp ./scaffold/templates/drupal/decoupled/composer.json ./;
+	cp -r ./scaffold/templates/drupal/decoupled/config ./
+_setup_drupal_standard: _setup_drupal
+	cp ./scaffold/templates/drupal/standard/composer.json ./;
+	cp -r ./scaffold/templates/drupal/standard/config ./
+
 
 _setup_tests: _setup_phpunit _setup_lighthouse _setup_qa
 	cp ./scaffold/templates/docker/docker-compose.tests.yml ./

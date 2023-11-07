@@ -1,0 +1,24 @@
+uuid: 6f756b3e-1452-4769-9e88-61b72f91b66d
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.documents
+    - field.field.block_content.documents.documents
+id: block_content.documents.default
+targetEntityType: block_content
+bundle: documents
+mode: default
+content:
+  documents:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

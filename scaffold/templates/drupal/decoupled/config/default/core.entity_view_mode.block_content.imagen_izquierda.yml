@@ -1,0 +1,10 @@
+uuid: e210b841-31e4-430a-b45f-135ad6689975
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_content
+id: block_content.imagen_izquierda
+label: 'Imagen izquierda'
+targetEntityType: block_content
+cache: true

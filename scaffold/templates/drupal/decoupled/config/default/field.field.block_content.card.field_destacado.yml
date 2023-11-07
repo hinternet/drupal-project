@@ -1,0 +1,21 @@
+uuid: d3b04e5a-35c4-47ce-b0fe-8a3cf56e2a75
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card
+    - field.storage.block_content.field_destacado
+  module:
+    - options
+id: block_content.card.field_destacado
+field_name: field_destacado
+entity_type: block_content
+bundle: card
+label: Destacado
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

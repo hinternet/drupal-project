@@ -1,0 +1,22 @@
+uuid: 261402d0-b295-4cae-954a-8ee80bf3b011
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: clausula
+label: Clausula
+type: 'canonical_entities:node'
+pattern: '/[node:field_area_category:entity:parents:join-path]/[node:field_area_category]/[node:title]'
+selection_criteria:
+  0f933e84-0ba2-4d70-b93d-00f4eaa113a1:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 0f933e84-0ba2-4d70-b93d-00f4eaa113a1
+    context_mapping:
+      node: node
+    bundles:
+      clausula: clausula
+selection_logic: and
+weight: -5
+relationships: {  }

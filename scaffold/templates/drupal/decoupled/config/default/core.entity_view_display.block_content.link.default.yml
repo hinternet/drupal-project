@@ -1,0 +1,29 @@
+uuid: fe8da3bf-0c2b-41be-b7d6-e3e5044e97b6
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.link
+    - field.field.block_content.link.field_link
+  module:
+    - link
+id: block_content.link.default
+targetEntityType: block_content
+bundle: link
+mode: default
+content:
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
