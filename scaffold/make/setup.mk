@@ -68,7 +68,7 @@ _docker:
 	cp -r ./scaffold/templates/docker/.ssl ./
 	mkdir -p ./config/docker
 	cp ./scaffold/templates/docker/docker-compose.*.yml ./config/docker/
-	cp ./scaffold/templates/make/docker.mk ./config/docker/
+	cp ./scaffold/make/docker.mk ./config/docker/
 
 _setup_drupal:
 	@echo "Setup Drupal files";
