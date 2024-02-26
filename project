@@ -1,0 +1,538 @@
+#!/bin/sh
+
+GREEN='#00d466'
+RED='#da0000'
+WHITE='#fafafa'
+GRAY='#9f9f9f'
+CHECK_MARK='\xE2\x9C\x94'
+CROSS_MARK='\xE2\x9D\x8C'
+WARNING_MARK='\xE2\x9A\xA0'
+REQUIRED_DEPS='git sed envsubst jq docker docker-compose ddev'
+DEFAULT_PROJECT_NAME=$(basename "$(pwd)" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-zA-Z0-9]/-/g')
+PHP_VERSIONS='8.2 8.3 8.1 8.0'
+WEB_SERVERS='nginx apache'
+PROJECT_TYPE='drupal10'
+PROJECT_DOCROOT='web'
+DRUPAL_TYPES='standard decoupled demo'
+CLEANUP_FILES=".env* .eslint* .lighthouseci* composer* grumphp.yml lighthouserc* load.environment.php package* phpstan* phpunit* rector* RoboFile.php config .ddev docs drush files-private scripts tests/behat tests/cypress vendor web"
+
+# #######################################################
+# THIS ARE INTERNAL ROUTINES. DO NOT CALL THEM DIRECTLY #
+# #######################################################
+
+_is_done() {
+  done=$(git remote -v | grep -q 'hinternet/drupal-project' && echo "no" || echo "yes")
+  if [ "$done" = "yes" ]; then
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$WHITE" "Project is already setup")";
+      exit 0;
+  fi
+}
+
+_is_not_done() {
+  if [ ! -f .ddev/config.yaml ]; then
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="2 4" \
+      --background="$RED" \
+      --foreground="$WHITE" \
+      "Project is not initialized. Please run $(gum style --foreground="$GREEN" "$0 setup") first.";
+    exit 1;
+  fi
+}
+
+_do_drupal_type() {
+  case "$1" in
+    standard)
+      # shellcheck disable=SC2059
+      gum style \
+        --margin="0 3" \
+        --foreground="$GREEN" \
+        "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$GRAY" "Using standard Drupal configuration.")";
+      cp -rf ./scaffold/templates/drupal/standard/* ./;
+      ;;
+    decoupled)
+      # shellcheck disable=SC2059
+      gum style \
+        --margin="0 3" \
+        --foreground="$GREEN" \
+        "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$GRAY" "Using decoupled Drupal configuration.")";
+      cp -rf ./scaffold/templates/drupal/decoupled/* ./;
+      ;;
+    demo)
+      # shellcheck disable=SC2059
+      gum style \
+        --margin="0 3" \
+        --foreground="$RED" \
+        "$(gum style --foreground="$RED" "$(printf $CROSS_MARK)") "Not implemented."";
+      exit 1;
+      ;;
+    *)
+      # shellcheck disable=SC2059
+      gum style \
+        --margin="0 3" \
+        --foreground="$RED" \
+        "$(gum style --foreground="$RED" "$(printf $CROSS_MARK) Invalid Drupal installation type:") $(gum style --underline --foreground="$WHITE" "$1"). $(gum style --foreground="$RED" "Allowed types are:") $(gum style --foreground="$GRAY" "$(echo "$DRUPAL_TYPES" | tr ' ' ', ')")";
+      exit 1;
+      ;;
+  esac
+}
+
+_do_setup() {
+  PROJECT_NAME=$1
+  PHP_VERSION=$2
+  WEB_SERVER=$3
+  DRUPAL_TYPE=$4
+  N=80
+  SEPARATOR=$(printf "%-${N}s" " ")
+  SEPARATOR=$(echo "$SEPARATOR" | sed 's/ /=/g')
+  gum style \
+    --margin="0 2" \
+    --foreground="$GREEN" \
+    "$SEPARATOR";
+  RESUME=$(printf "%s %s %s %s %s %s %s %s %s\n" \
+    "$(gum style --foreground="$GREEN" "Using project")" \
+    "$(gum style --underline --foreground="$WHITE" "$PROJECT_NAME ($PROJECT_TYPE)")" \
+    "$(gum style --foreground="$GREEN" "with PHP")" \
+    "$(gum style --underline --foreground="$WHITE" "$PHP_VERSION")" \
+    "$(gum style --foreground="$GREEN" ",")" \
+    "$(gum style --underline --foreground="$WHITE" "$WEB_SERVER")" \
+    "$(gum style --foreground="$GREEN" "and")" \
+    "$(gum style --underline --foreground="$WHITE" "$DRUPAL_TYPE")" \
+    "$(gum style --foreground="$GREEN" "configuration.")");
+  gum style --padding="0 2" "$RESUME";
+
+  # Setup Drupal
+  # shellcheck disable=SC2059
+  gum spin \
+    --show-output \
+    --title.foreground="$WHITE" \
+    --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Setup Drupal files." \
+  cp -f ./scaffold/templates/drupal/.env.* ./ && \
+  PROJECT_NAME=$PROJECT_NAME envsubst < ./.env.dist > .env && \
+  cp -f ./scaffold/templates/drupal/load.environment.php ./ && \
+  cp -f ./scaffold/templates/drupal/RoboFile.php ./ && \
+  cp -rf ./scaffold/templates/drupal/scripts ./ && \
+  cp -f ./scaffold/templates/drupal/package* ./ && \
+  mkdir -p web/sites/default/files && \
+  mkdir -p files-private && \
+  cp -f ./scaffold/templates/drupal/settings.php ./web/sites/default/ && \
+  cp -f ./scaffold/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php && \
+  cp -r ./scaffold/templates/drupal/drush ./ && \
+  _do_drupal_type "$DRUPAL_TYPE";
+
+  # Setup testing tools
+  # shellcheck disable=SC2059
+  gum spin \
+    --show-output \
+    --title.foreground="$WHITE" \
+    --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Setup testing tools." \
+  cp -f ./scaffold/templates/testing/* ./ && \
+	cp -f ./phpunit.xml.dist ./phpunit.xml && \
+	mkdir -p ./tests/phpunit && \
+	mkdir -p ./.lighthouseci;
+
+  # Setup DDEV
+  # shellcheck disable=SC2059
+  gum spin \
+    --show-output \
+    --title.foreground="$WHITE" \
+    --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Setup DDEV." \
+  "$(ddev config \
+    --project-name "$PROJECT_NAME" \
+    --docroot "$PROJECT_DOCROOT" \
+    --php-version "$PHP_VERSION" \
+    --webserver-type "${WEB_SERVER}-fpm" \
+    --project-type "$PROJECT_TYPE")";
+}
+
+_do_cleanup() {
+  for _file in $CLEANUP_FILES; do
+    # shellcheck disable=SC2059
+    rm -rf "$_file" && \
+    gum style \
+      --margin="0 1" \
+      --foreground="$GRAY" \
+      "$(gum style --foreground="$RED" "$(printf $CROSS_MARK)") $_file deleted.";
+  done
+  # Restore files modified by the setup
+  # git checkout -- .editorconfig 2>&1
+  # git checkout -- .gitignore 2>&1
+  # git checkout -- scaffold/ 2>&1
+	N=25
+  SEPARATOR=$(printf "%-${N}s" " ")
+  SEPARATOR=$(echo "$SEPARATOR" | sed 's/ /=/g')
+  gum style \
+    --margin="0 1" \
+    --padding="0 2" \
+    --foreground="$GREEN" \
+    "$SEPARATOR";
+  gum style \
+    --margin="0 1" \
+    --padding="0 2" \
+    --foreground="$GREEN" \
+    "Cleanup completed!";
+}
+
+_do_finish() {
+  # shellcheck disable=SC2059
+  gum spin \
+      --show-output \
+      --title.foreground="$WHITE" \
+      --title="$(gum style --foreground="$WHITE" "$(printf $CHECK_MARK)") Intializing git repository." \
+	mv .git .git.orig && \
+  cp -f .gitignore .gitignore.orig && \
+  sed '3,27s/^/#/' .gitignore.orig > .gitignore && \
+	git init;
+  # shellcheck disable=SC2059
+  gum style \
+    --margin="0 1" \
+    --foreground="$GRAY" \
+    "$(gum style --foreground="$WHITE" "$(printf $CHECK_MARK)") Setup .gitignore file.";
+	# $(call replace_inline,'3,25 s/^/#/',./.gitignore)
+  # shellcheck disable=SC2059
+  gum style \
+    --margin="0 1" \
+    --foreground="$GRAY" \
+    "$(gum style --foreground="$WHITE" "$(printf $CHECK_MARK)") Removing scaffold files.";
+	mv ./scaffold ./scaffold.orig
+	mv ./tests/scaffold ./tests/scaffold.orig
+  # shellcheck disable=SC2059
+  gum style \
+    --margin="0 1" \
+    --foreground="$GRAY" \
+    "$(gum style --foreground="$WHITE" "$(printf $CHECK_MARK)") Perform initial commit.";
+	git add .
+	git commit -n -S -m "Initial commit"
+  N=25
+  SEPARATOR=$(printf "%-${N}s" " ")
+  SEPARATOR=$(echo "$SEPARATOR" | sed 's/ /=/g')
+  gum style \
+    --margin="0 1" \
+    --padding="0 2" \
+    --foreground="$GREEN" \
+    "$SEPARATOR";
+  gum style \
+    --margin="0 1" \
+    --padding="0 2" \
+    --foreground="$GREEN" \
+    "Project setup completed!";
+}
+
+_do_install(){
+  # shellcheck disable=SC2059
+  gum spin \
+    --show-output \
+    --title.foreground="$WHITE" \
+    --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Starting up" \
+  ddev start;
+
+  # shellcheck disable=SC2059
+  gum spin \
+    --show-output \
+    --title.foreground="$WHITE" \
+    --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Installing PHP dependencies" \
+  "$(ddev composer install --no-interaction && \
+  ddev composer run-script generate-salt --no-interaction)";
+
+  PROJECT_NAME=$(ddev describe -j | jq -r '.raw.name' -);
+  # shellcheck disable=SC2059
+  gum spin \
+    --show-output \
+    --title.foreground="$WHITE" \
+    --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Installing Drupal" \
+  "$(ddev drush site:install --existing-config --account-pass=admin --site-name="$PROJECT_NAME" -y && \
+  gum style --margin="3 0" --foreground="$GREEN" "Drupal installed! You can log in with link below" && \
+  ddev drush user:login)";
+}
+
+# ##########################################################################
+# THESE ARE THE PUBLIC COMMANDS. CHECK EACH COMMAND FOR EXPECTED ARGUMENTS #
+# ##########################################################################
+
+requirements() {
+  gum style \
+    --padding="2 4" \
+    --foreground="$GREEN" \
+    --border normal \
+    --border-foreground="$GREEN" \
+    "Checking required tools or binaries are installed.";
+  FAIL=0;
+  for cmd in $REQUIRED_DEPS; do
+    if ! which "$cmd" > /dev/null; then
+      # shellcheck disable=SC2059
+      gum style \
+        --margin="0 1" \
+        --foreground="$RED" \
+        "$(printf $CROSS_MARK) $cmd is NOT installed.";
+      FAIL=1;
+    else
+      # shellcheck disable=SC2059
+      gum style \
+      --margin="0 1" \
+      "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$GRAY" "$cmd") $(gum style --foreground="$WHITE" "is installed")";
+    fi;
+  done
+  if [ $FAIL -eq 1 ]; then
+    gum style \
+      --margin="1" \
+      --padding="1 2" \
+      --background="$RED" \
+      --foreground="$WHITE" \
+      "Some required binaries are missing. Please install it.";
+    exit 1;
+  else
+    N=25
+    SEPARATOR=$(printf "%-${N}s" " ")
+    SEPARATOR=$(echo "$SEPARATOR" | sed 's/ /=/g')
+    gum style \
+      --margin="0 1" \
+      --padding="0 2" \
+      --foreground="$GREEN" \
+      "$SEPARATOR";
+    gum style \
+      --margin="0 1" \
+      --padding="0 2" \
+      --foreground="$GREEN" \
+      "All requirements are met!";
+  fi
+}
+
+setup() {
+  requirements;
+  _is_done;
+  gum style \
+    --padding="2 4" \
+    --foreground="$GREEN" \
+    --border normal \
+    --border-foreground="$GREEN" \
+    "Executing project scaffold script"
+  mkdir -p ./config/ddev
+  echo "# This directory is reserved for DDEV's project-specific settings" | tee ./config/ddev/.gitkeep > /dev/null 2>&1
+
+  gum style \
+    --foreground="$GREEN" \
+    "Enter project name (use lowercase letters, numbers, underscores and must not start with a number):"
+  PROJECT_NAME=$(gum input \
+    --cursor.foreground "$WHITE" \
+    --prompt.foreground "$GRAY" \
+    --placeholder "Ex.: my-project" \
+    --value "${DEFAULT_PROJECT_NAME}")
+  if echo "$PROJECT_NAME" | grep -Eq '^[a-z-][a-z0-9-]*$'; then
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$WHITE" "Project name:") $(gum style --foreground="$GRAY" "$PROJECT_NAME").";
+  else
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      --foreground="$RED" \
+      "$(printf $CROSS_MARK) $PROJECT_NAME is NOT a valid name.";
+    exit 1;
+  fi
+
+  # PHP version
+  gum style \
+  --foreground="$GREEN" \
+  "Select PHP version:"
+  # shellcheck disable=SC2086
+  PHP_VERSION=$(gum choose --item.foreground $WHITE $PHP_VERSIONS)
+  if [ -z "$PHP_VERSION" ]; then
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      --foreground="$RED" \
+      "$(printf $CROSS_MARK) MUST select a PHP version.";
+    exit 1;
+  else
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$WHITE" "PHP version:") $(gum style --foreground="$GRAY" "$PHP_VERSION").";
+  fi
+  if [ "$PHP_VERSION" = "8.0" ]; then
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 2" \
+      --foreground="$RED" \
+      "$(printf $WARNING_MARK) Please, bear in mind that PHP $(gum style --foreground="$WHITE" "$PHP_VERSION") $(gum style --foreground="$RED" "is DEPRECATED and NOT SUPPORTED by Drupal, upgrade as soon as possible.")";
+  fi
+
+  # Web server
+  gum style \
+    --foreground="$GREEN" \
+    "Select web server:"
+  # shellcheck disable=SC2086
+  WEB_SERVER=$(gum choose --item.foreground $WHITE $WEB_SERVERS)
+  if [ -z "$WEB_SERVER" ]; then
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      --foreground="$RED" \
+      "$(printf $CROSS_MARK) MUST select a web server.";
+    exit 1;
+  else
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$WHITE" "Web server:") $(gum style --foreground="$GRAY" "$WEB_SERVER").";
+  fi
+
+  # Drupal base config
+  gum style \
+    --foreground="$GREEN" \
+    "Select Drupal project-type (check README for more information about this):"
+  # shellcheck disable=SC2086
+  DRUPAL_TYPE=$(gum choose --item.foreground $WHITE $DRUPAL_TYPES)
+  if [ -z "$DRUPAL_TYPE" ]; then
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      --foreground="$RED" \
+      "$(printf $CROSS_MARK) MUST select a project-type.";
+    exit 1;
+  else
+    # shellcheck disable=SC2059
+    gum style \
+      --padding="1 0" \
+      "$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") $(gum style --foreground="$WHITE" "Project type:") $(gum style --foreground="$GRAY" "$DRUPAL_TYPE").";
+  fi
+
+  # Actually run the setup
+  _do_setup "$PROJECT_NAME" "$PHP_VERSION" "$WEB_SERVER" "$DRUPAL_TYPE"
+}
+
+clean() {
+  _is_done
+  gum style \
+      --padding="2 4" \
+      --background="$RED" \
+      --foreground="$WHITE" \
+      "WARNING! Running cleanup tasks.";
+  gum style \
+      --padding="1 0" \
+      --foreground="$RED" \
+      "The following files and directories will be removed:";
+  for _file in $CLEANUP_FILES; do
+    gum style \
+      --margin="0 1" \
+      --foreground="$RED" \
+      "> $_file";
+  done
+  # shellcheck disable=SC2059
+	gum confirm \
+    --prompt.foreground="$RED" \
+    --timeout="15s" \
+    --default=no \
+    "Are you sure you want to continue?" && _do_cleanup || gum style --margin="1 0" --foreground="$GRAY" "$(printf $CROSS_MARK) Cancelled" && exit 0;
+}
+
+finish() {
+  _is_done
+  gum style \
+    --padding="2 4" \
+    --background="$GREEN" \
+    --foreground="$WHITE" \
+    "Finishing setup";
+  # shellcheck disable=SC2059
+  gum confirm \
+    --prompt.foreground="$RED" \
+    --timeout="15s" \
+    --default=no \
+    "Are you sure you want to finish setup? This action cannot be undone" && _do_finish || gum style --margin="1 0" --foreground="$GRAY" "$(printf $CROSS_MARK) Cancelled" && exit 0;
+}
+
+install() {
+  _is_not_done
+  gum style \
+    --margin="1 0" \
+    --padding="2 4" \
+    --background="$GREEN" \
+    --foreground="$WHITE" \
+    "Installing Drupal";
+  # shellcheck disable=SC2059
+    gum style \
+      --foreground="$RED" \
+      "$(printf $WARNING_MARK) This action will install Drupal and remove all existing data.";
+  # shellcheck disable=SC2059
+  gum confirm \
+    --prompt.foreground="$RED" \
+    --timeout="15s" \
+    --default=no \
+    "Are you sure you want to continue?" && _do_install || gum style --margin="1 0" --foreground="$GRAY" "$(printf $CROSS_MARK) Cancelled" && exit 0;
+}
+
+help() {
+  gum style \
+    --padding="2 0" \
+    --foreground="$GREEN" \
+    "Usage: $0 <command> [parameters]";
+  gum style \
+    --foreground="$GREEN" \
+    "Available commands:"
+  gum style \
+    --padding="1 0" \
+    --foreground="$WHITE" \
+    "$(gum style --foreground="$WHITE" requirements)  Check if required tools or binaries are installed.
+$(gum style --foreground="$WHITE" setup)         Execute project scaffold script. Can only be run once, to initialize the project.
+$(gum style --foreground="$WHITE" clean)         Execute scaffolding clean-up routine. Can only be run if the project is not initialized.
+$(gum style --foreground="$WHITE" finish)        Finish the project initialization, after this the project is considered initialized.
+$(gum style --foreground="$WHITE" start)         Startup project containers. Alias (up).
+$(gum style --foreground="$WHITE" stop)          Stop project containers. Alias (down).
+$(gum style --foreground="$WHITE" prune)         Remove all project containers without lossing data. Pass --remove-data option to wipe all.
+$(gum style --foreground="$WHITE" onboard)       Setup local environment for the first time.
+$(gum style --foreground="$WHITE" install)       Run Drupal installation routine, running Composer and Drush through DDEV." \
+    ;
+}
+
+if [ $# -eq 0 ]; then
+    help
+    exit 1
+fi
+
+cmd="$1"
+shift
+case "$cmd" in
+  # To pass arguments from stdin to the function, use the following syntax: "$(printf '%s\n' "$@" | cut -d ' ' -f 2-)"
+  requirements)
+    requirements
+    ;;
+  setup)
+    setup
+    ;;
+  clean)
+    clean
+    ;;
+  finish)
+    finish
+    ;;
+  start)
+    ddev start
+    ;;
+  stop)
+    ddev poweroff
+    ;;
+  prune)
+    ddev stop "$(printf '%s\n' "$@" | cut -d ' ' -f 2-)"
+    ;;
+  onboard)
+    PROJECT_NAME=$(ddev describe -j | jq -r '.raw.name' -);
+    PROJECT_NAME=$PROJECT_NAME envsubst < ./.env.dist > .env;
+    ;;
+  install)
+    install
+    ;;
+  help)
+    help
+    ;;
+  *)
+    gum style --margin="1" --padding="1 2" --background="#ff0000" --foreground="$WHITE" "Unknown command '$cmd'.";
+    help
+    exit 1
+    ;;
+esac
+
+exit 0

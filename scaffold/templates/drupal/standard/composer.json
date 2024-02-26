@@ -91,7 +91,7 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-     "config": {
+    "config": {
         "discard-changes": true,
         "sort-packages": true,
         "allow-plugins": {
@@ -109,7 +109,9 @@
         "classmap": [
             "./scaffold/templates/drupal/scripts/composer/ScriptHandler.php"
         ],
-        "files": ["load.environment.php"]
+        "files": [
+            "load.environment.php"
+        ]
     },
     "scripts": {
         "pre-install-cmd": [
@@ -125,9 +127,8 @@
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ],
-        "install-drupal": [
-            "./scripts/generate-salt.sh",
-            "./scripts/enforce-permissions.sh"
+        "generate-salt": [
+            "./scripts/generate-salt.sh"
         ]
     },
     "extra": {

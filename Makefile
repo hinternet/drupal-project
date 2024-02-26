@@ -9,38 +9,65 @@ endif
 
 export CURRENT_OS
 
-define replace_inline
-	ifeq ($(CURRENT_OS),Darwin)
-		sed -i '' $(1) $(2)
-	else
-		sed -i $(1) $(2)
-	endif
-endef
-
-include $(shell find . -type f -name '*.mk')
-
 .PHONY: help
 help:
 	@sed -n 's/^##//p' $(filter-out .env, $(MAKEFILE_LIST))
 
-## install	:	Installs Drupal using the pre-packed configuration
-install: ./config ./composer.json ./.env
-	@echo "Executing Drupal installation"
-	@$(MAKE) up
-ifeq ($(CURRENT_OS),Darwin)
-	@$(MAKE) mutagen
-endif
-	@$(MAKE) composer "install --no-interaction"
-	@$(MAKE) composer "run-script install-drupal --no-interaction"
-	@$(MAKE) drush "si --existing-config -y"
-	@echo "Installation finished!"
-	@echo "You can log-in by clicking the link below"
-	@$(MAKE) drush "user:login"
+## requirements : Check if all requirements are met
+.PHONY: requirements
+requirements: gum
+	@./project requirements
 
-## test	:	Run scaffolding tests
+## setup        : Execute project setup
+.PHONY: setup
+setup: gum
+	@./project setup
+
+## clean        : Delete project setup files
+.PHONY: clean
+clean: gum
+	@./project clean
+
+## done         : Set the scaffold as done, preventing furhter modifications
+done: gum
+	@./project finish
+
+## onboard      : Setup local environment for the first time
+.PHONY: onboard
+onboard: gum
+	@./project onboard
+
+## install      : Installs Drupal using the pre-packed configuration
+install: gum ./config ./composer.json ./.env ./ddev/config.yaml
+	@./project install
+
+## up           : Start up containers.
+.PHONY: up
+up: gum
+	@./project start
+
+## start        : Start containers (alias for 'up').
+.PHONY: start
+start: up
+
+## down         : Stop containers.
+.PHONY: down
+down: gum ./config ./composer.json ./.env ./ddev/config.yaml
+	@./project stop
+
+## stop         : Stop containers (alias for 'down').
+.PHONY: stop
+stop: down
+
+## prune        : Remove containers and their volumes.
+.PHONY: prune
+prune: gum ./config ./composer.json ./.env ./ddev/config.yaml
+	@./project prune
+
+## test         : Run tests
 .PHONY: test
 test:
-	@./tests/scaffold/run.sh
+	@./tests/run.sh
 
 # https://stackoverflow.com/a/6273809/1826109
 %:

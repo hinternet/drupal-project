@@ -2,9 +2,10 @@
 # These lines will be commented out after scaffold is done
 /.env*
 /.eslint*
-.salt
+/.salt
 /.version
 /.ssl
+/.ddev
 /composer*
 /config
 /docs
@@ -18,11 +19,12 @@
 /phpstan.neon*
 /phpunit.xml*
 /rector.yml*
+/RoboFile.php
 /scripts
 /traefik.toml
 /web
 /yarn.lock
-patches.lock.json
+/patches.lock.json
 ### END OF SCAFFOLD BLOCK ####
 
 # OS X
