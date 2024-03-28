@@ -182,10 +182,10 @@ _do_finish() {
       --show-output \
       --title.foreground="$WHITE" \
       --title="$(gum style --foreground="$WHITE" "$(printf $CHECK_MARK)") Intializing git repository." \
-	mv .git .git.orig && \
+	"$(mv .git .git.orig && \
   cp -f .gitignore .gitignore.orig && \
   sed '3,27s/^/#/' .gitignore.orig > .gitignore && \
-	git init;
+	git init)";
   # shellcheck disable=SC2059
   gum style \
     --margin="0 1" \
@@ -197,8 +197,8 @@ _do_finish() {
     --margin="0 1" \
     --foreground="$GRAY" \
     "$(gum style --foreground="$WHITE" "$(printf $CHECK_MARK)") Removing scaffold files.";
-	"$(mv ./scaffold ./scaffold.orig
-	mv ./tests/scaffold ./tests/scaffold.orig)"
+	mv ./scaffold ./scaffold.orig
+	mv ./tests/scaffold ./tests/scaffold.orig
   # shellcheck disable=SC2059
   gum style \
     --margin="0 1" \
