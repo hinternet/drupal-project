@@ -110,7 +110,7 @@ _do_setup() {
     --show-output \
     --title.foreground="$WHITE" \
     --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Setup Drupal files." \
-  cp -f ./scaffold/templates/drupal/.env.* ./ && \
+  "$(cp -f ./scaffold/templates/drupal/.env.* ./ && \
   PROJECT_NAME=$PROJECT_NAME envsubst < ./.env.dist > .env && \
   cp -f ./scaffold/templates/drupal/load.environment.php ./ && \
   cp -f ./scaffold/templates/drupal/RoboFile.php ./ && \
@@ -121,7 +121,7 @@ _do_setup() {
   cp -f ./scaffold/templates/drupal/settings.php ./web/sites/default/ && \
   cp -f ./scaffold/templates/drupal/settings.dev.php ./web/sites/default/settings.local.php && \
   cp -r ./scaffold/templates/drupal/drush ./ && \
-  _do_drupal_type "$DRUPAL_TYPE";
+  _do_drupal_type "$DRUPAL_TYPE")";
 
   # Setup testing tools
   # shellcheck disable=SC2059
@@ -129,10 +129,10 @@ _do_setup() {
     --show-output \
     --title.foreground="$WHITE" \
     --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Setup testing tools." \
-  cp -f ./scaffold/templates/testing/* ./ && \
+  "$(cp -f ./scaffold/templates/testing/* ./ && \
 	cp -f ./phpunit.xml.dist ./phpunit.xml && \
 	mkdir -p ./tests/phpunit && \
-	mkdir -p ./.lighthouseci;
+	mkdir -p ./.lighthouseci)";
 
   # Setup DDEV
   # shellcheck disable=SC2059
@@ -197,8 +197,8 @@ _do_finish() {
     --margin="0 1" \
     --foreground="$GRAY" \
     "$(gum style --foreground="$WHITE" "$(printf $CHECK_MARK)") Removing scaffold files.";
-	mv ./scaffold ./scaffold.orig
-	mv ./tests/scaffold ./tests/scaffold.orig
+	"$(mv ./scaffold ./scaffold.orig
+	mv ./tests/scaffold ./tests/scaffold.orig)"
   # shellcheck disable=SC2059
   gum style \
     --margin="0 1" \
