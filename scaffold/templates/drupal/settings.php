@@ -277,7 +277,7 @@ $settings['config_sync_directory'] = getenv('CONFIG_SYNC_DIRECTORY');
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = file_get_contents(getenv('HASH_SALT_FILE'));
+#$settings['hash_salt'] = file_get_contents(getenv('HASH_SALT_FILE'));
 
 /**
  * Deployment identifier.
