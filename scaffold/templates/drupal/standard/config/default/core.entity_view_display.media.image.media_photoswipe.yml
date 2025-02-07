@@ -1,0 +1,31 @@
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.media_photoswipe
+    - field.field.media.image.field_media_image
+    - image.style.media_gallery_image
+    - media.type.image
+  module:
+    - photoswipe
+id: media.image.media_photoswipe
+targetEntityType: media
+bundle: image
+mode: media_photoswipe
+content:
+  field_media_image:
+    type: photoswipe_field_formatter
+    label: visually_hidden
+    settings:
+      photoswipe_thumbnail_style_first: ''
+      photoswipe_thumbnail_style: media_gallery_image
+      photoswipe_image_style: ''
+      photoswipe_reference_image_field: ''
+      photoswipe_view_mode: media_photoswipe
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true
