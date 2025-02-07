@@ -3,7 +3,6 @@ _core:
 langcode: es
 module:
   admin_toolbar: 0
-  admin_toolbar_links_access_filter: 0
   admin_toolbar_search: 0
   admin_toolbar_tools: 0
   base_field_override_ui: 0
@@ -14,10 +13,8 @@ module:
   breakpoint: 0
   ckeditor5: 0
   coffee: 0
-  colorbox: 0
   comment: 0
   config: 0
-  config_filter: 0
   config_split: 0
   contact: 0
   contextual: 0

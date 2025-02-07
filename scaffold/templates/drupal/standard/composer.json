@@ -28,8 +28,6 @@
         "drupal/base_field_override_ui": "^1.2",
         "drupal/block_form_alter": "^2.1",
         "drupal/coffee": "^2.0",
-        "drupal/colorbox": "^2.1",
-        "drupal/config_filter": "^2.7",
         "drupal/config_split": "^2.0",
         "drupal/core-composer-scaffold": "^11",
         "drupal/core-project-message": "^11",
