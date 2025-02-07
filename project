@@ -234,8 +234,9 @@ _do_install(){
     --show-output \
     --title.foreground="$WHITE" \
     --title="$(gum style --foreground="$GREEN" "$(printf $CHECK_MARK)") Installing PHP dependencies" \
-  "$(ddev composer install --no-interaction)";
-
+  "$(ddev composer install --no-interaction && \
+  ddev composer run-script generate-salt --no-interaction)";
+  
   PROJECT_NAME=$(ddev describe -j | jq -r '.raw.name' -);
   # shellcheck disable=SC2059
   gum spin \

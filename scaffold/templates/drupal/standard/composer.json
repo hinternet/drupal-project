@@ -29,8 +29,9 @@
         "drupal/block_form_alter": "^2.1",
         "drupal/coffee": "^2.0",
         "drupal/config_split": "^2.0",
-        "drupal/core-composer-scaffold": "^11.1",
-        "drupal/core-recommended": "^11.1",
+        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-project-message": "^11",
+        "drupal/core-recommended": "^11",
         "drupal/ctools": "^4.1",
         "drupal/devel": "^5.3",
         "drupal/easy_breadcrumb": "^2.0",
@@ -65,7 +66,7 @@
     "require-dev": {
         "behat/behat": "^3.18",
         "dmore/behat-chrome-extension": "^1.4",
-        "drupal/core-dev": "^11.1",
+        "drupal/core-dev": "^11",
         "drupal/drupal-extension": "^5.1",
         "phpmd/phpmd": "^2.15",
         "phpstan/phpstan-deprecation-rules": "^2.0",
@@ -125,6 +126,9 @@
         ],
         "post-update-cmd": [
             "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "generate-salt": [
+            "./scripts/generate-salt.sh"
         ]
     },
     "extra": {
